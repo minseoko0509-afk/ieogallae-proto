@@ -14,7 +14,7 @@ export default function StatusTop({ onShare, compact }) {
 
   return (
     <>
-      <div className="card stack" style={{ borderColor: 'var(--c-ink)', gap: 10 }}>
+      <div className="card stack" style={{ borderColor: 'var(--c-lav-3)', gap: 10 }}>
         <div className="row" style={{ justifyContent: 'space-between' }}>
           <span className="t-body" style={{ fontWeight: 700 }}>응답 {count} / {N}</span>
           {compact && missing.length > 0 ? (
