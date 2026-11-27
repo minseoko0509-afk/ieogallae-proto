@@ -29,7 +29,7 @@ export default function B1() {
       <div className="stack" style={{ gap: 8 }}>
         <p className="t-body" style={{ fontWeight: 700 }}>{N}명 중 {count}명 응답</p>
         <div className="row" style={{ gap: 6 }}>
-          {responded.map((n) => <Avatar key={n} name={n} />)}
+          {responded.map((n) => <Avatar key={n} name={n} size={44} />)}
           {Array.from({ length: N - count }, (_, i) => <span key={i} className="avatar avatar--empty" aria-hidden="true" />)}
         </div>
       </div>

@@ -22,7 +22,7 @@ export default function B6() {
           const on = i < count
           return (
             <span key={i} className={`seat ${on ? 'is-on' : ''}`} style={{ left: C + R * Math.cos(a) - 25, top: C + R * Math.sin(a) - 25 }}>
-              {on && responded[i] ? <Avatar name={responded[i]} size={50} /> : ''}
+              {on && responded[i] ? <Avatar name={responded[i]} size={58} /> : ''}
             </span>
           )
         })}
