@@ -1,0 +1,108 @@
+/* 핵심 화면(A, B5, C, D) 전용 스타일. 공통 토큰은 tokens.css */
+
+/* ---------- 월간 달력 ---------- */
+.month { padding: 8px; }
+.month__title { margin: 0 0 6px; font-size: 14px; font-weight: 700; text-align: center; }
+.month__dow, .month__grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 3px; }
+.month__dow { text-align: center; font-size: 11px; color: var(--c-text-sub); margin-bottom: 3px; }
+.mcell {
+  height: 44px; padding: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font-size: 12px; line-height: 1.1;
+  border-radius: 8px; border: 1.5px solid transparent; background: none; color: var(--c-ink);
+}
+.mcell:disabled { cursor: default; }
+.mcell--empty { height: 44px; }
+.mcell__mark { font-size: 12px; font-weight: 700; }
+/* 응답 상태 4가지 */
+.mcell--ok { background: var(--c-white); border-color: var(--c-gray-2); }
+.mcell--part { background: var(--c-gray-2); border-color: var(--c-gray-3); }
+.mcell--no { background: var(--c-ink); border-color: var(--c-ink); color: var(--c-white); }
+.mcell--tbd { background: var(--c-white); border: 1.5px dashed var(--c-ink); }
+.mcell--need { outline: 2px solid var(--c-ink); outline-offset: -4px; }
+/* C2 순위 배지 / A2 범위 선택 */
+.mcell--out { color: var(--c-gray-3); }
+.mcell--rank { background: var(--c-ink); color: var(--c-white); }
+.mcell--muted { background: var(--c-gray-1); color: var(--c-ink); }
+.mcell--edge { background: var(--c-ink); color: var(--c-white); font-weight: 700; }
+.mcell--in { background: var(--c-gray-2); }
+
+.legend { display: flex; gap: 10px; flex-wrap: wrap; font-size: var(--fs-caption); color: var(--c-ink); }
+
+/* ---------- 순위·이름 ---------- */
+.rk {
+  flex: none; min-width: 40px; height: 28px; padding: 0 6px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 8px; background: var(--c-ink); color: var(--c-white);
+  font-size: 13px; font-weight: 700;
+}
+.nm {
+  display: inline-flex; align-items: center; height: 28px; padding: 0 10px;
+  border-radius: 999px; background: var(--c-gray-1); border: 1px solid var(--c-gray-2);
+  font-size: 13px;
+}
+.label-box { border: 1.5px solid var(--c-ink); border-radius: 6px; padding: 2px 8px; font-size: 12px; font-weight: 700; }
+.top-item { display: flex; align-items: center; gap: 10px; padding: 10px; width: 100%; text-align: left; background: var(--c-white); }
+.top-item.is-on { border-color: var(--c-ink); }
+
+/* ---------- 진행 바 (응답 n/N, 70% 기준선) ---------- */
+.progress { position: relative; height: 10px; border-radius: 5px; background: var(--c-gray-2); }
+.progress__fill { height: 10px; border-radius: 5px; background: var(--c-ink); }
+.progress__line { position: absolute; top: -6px; width: 2px; height: 22px; background: var(--c-ink); }
+
+/* ---------- 잠금 (C1) ---------- */
+.locked { position: relative; display: flex; flex-direction: column; gap: 10px; }
+.locked__bar { flex: 1; height: 28px; border-radius: 8px; background: var(--c-gray-1); filter: blur(1px); }
+.locked__cover {
+  position: absolute; inset: 0; border-radius: 14px;
+  background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(3px);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center;
+}
+
+/* ---------- 선택지 카드 (라디오) ---------- */
+.choice { display: flex; gap: 10px; align-items: center; min-height: var(--touch); cursor: pointer; }
+.choice.is-on { border-color: var(--c-ink); }
+
+/* ---------- 스테퍼, 토글 ---------- */
+.stepper { display: flex; align-items: center; gap: 16px; }
+.stepper .btn { width: 48px; height: 48px; font-size: 20px; }
+.stepper__val { font-size: 22px; font-weight: 700; min-width: 40px; text-align: center; }
+.toggle {
+  width: 44px; height: 26px; border-radius: 13px; border: 0; padding: 0; position: relative;
+  background: var(--c-gray-2); flex: none;
+}
+.toggle::after {
+  content: ''; position: absolute; left: 3px; top: 3px; width: 20px; height: 20px;
+  border-radius: 50%; background: var(--c-white); transition: left 0.15s;
+}
+.toggle.is-on { background: var(--c-ink); }
+.toggle.is-on::after { left: 21px; }
+.toggle-row { display: flex; justify-content: space-between; align-items: center; min-height: var(--touch); }
+
+.err { font-size: var(--fs-caption); color: var(--c-ink); font-weight: 700; margin: 4px 0 0; }
+.counter { font-size: var(--fs-caption); color: var(--c-text-sub); text-align: right; margin: 4px 0 0; }
+.note { background: var(--c-gray-1); border-color: var(--c-gray-1); }
+
+/* ---------- 토스트 ---------- */
+.toast {
+  position: absolute; left: 50%; bottom: 96px; transform: translateX(-50%); z-index: 60;
+  background: var(--c-ink); color: var(--c-white); border-radius: 999px;
+  padding: 10px 18px; font-size: 14px; white-space: nowrap;
+}
+
+/* ---------- 확정 카드 ---------- */
+.confirm-card { padding: 0; overflow: hidden; border-color: var(--c-ink); }
+.confirm-card .illust { border-radius: 0; border: 0; border-bottom: 1px dashed var(--c-gray-3); }
+.confirm-card__body { padding: 14px; display: flex; flex-direction: column; gap: 6px; }
+.textarea {
+  width: 100%; height: 110px; padding: 12px; resize: none;
+  border: 1.5px solid var(--c-line); border-radius: var(--radius-s); font-size: 14px;
+}
+
+input[type='radio'], input[type='checkbox'] { accent-color: var(--c-ink); width: 18px; height: 18px; }
+/* ◐ 글리프가 폰트마다 작게 나와서 CSS로 그린다 */
+.half {
+  display: inline-block; width: 11px; height: 11px; border-radius: 50%;
+  border: 1.5px solid currentColor; vertical-align: -1px;
+  background: linear-gradient(90deg, currentColor 50%, transparent 50%);
+}

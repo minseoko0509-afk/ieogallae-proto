@@ -1,20 +1,55 @@
-import Placeholder from '../components/Placeholder.jsx'
+import { Screen, Button } from '../components/ui.jsx'
+import StatusTop from '../components/StatusTop.jsx'
+import MonthGrid from '../components/MonthGrid.jsx'
+import { useGo } from '../router/useGo.js'
+import { usePlan } from '../lib/plan.js'
+import { formatDateKo, describeTally } from '../lib/ranking.js'
 
-// C2 — 플레이스홀더. 실제 화면으로 교체할 때 이 파일만 바꾸면 된다.
+export function TopList({ top, onPick }) {
+  return top.map((t) => (
+    <button key={t.date} type="button" className="card top-item" onClick={() => onPick(t.date)}>
+      <span className="rk">{t.rank}위</span>
+      <span style={{ flex: 1 }}>
+        <span className="t-body" style={{ display: 'block', fontWeight: 600 }}>{formatDateKo(t.date)}</span>
+        <span className="t-caption">{describeTally(t)}</span>
+      </span>
+      <span className="t-caption" aria-hidden="true">›</span>
+    </button>
+  ))
+}
+
+// C2 70% 이상: 잠정 결과. 달력 1·2·3위 배지 + Top3 리스트
 export default function C2() {
+  const go = useGo()
+  const { top, isHost, DATES } = usePlan()
+  const rankOf = Object.fromEntries(top.map((t) => [t.date, t.rank]))
+  const open = (date) => go('C2-S', { state: { date } })
+
   return (
-    <Placeholder
-      id="C2"
-      notes={[
-    "C 공통 상단",
-    "\"잠정 결과\" 라벨, 달력 1·2·3위 배지",
-    "Top3 리스트",
-    "\"더 답하면 순위가 바뀔 수 있어\"",
-      ]}
-      next={[
-    { label: "날짜 확정하기(주도자)", to: "C3" },
-    { label: "날짜 탭", to: "C2-S" },
-      ]}
-    />
+    <Screen>
+      <StatusTop compact />
+      <div className="row">
+        <span className="label-box">잠정 결과</span>
+        <span className="t-caption">더 답하면 순위가 바뀔 수 있어</span>
+      </div>
+      <MonthGrid
+        title={false}
+        renderCell={(k, d) => {
+          const r = rankOf[k]
+          return {
+            mark: r ? `${r}위` : null,
+            className: r ? 'mcell--rank' : DATES.includes(k) ? 'mcell--muted' : 'mcell--out',
+            label: `12월 ${d}일${r ? ` ${r}위` : ''}`,
+          }
+        }}
+        onTap={(k) => DATES.includes(k) && open(k)}
+      />
+      <TopList top={top} onPick={open} />
+      {isHost && (
+        <div className="bottom">
+          <Button variant="primary" onClick={() => go('C3')}>날짜 확정하기</Button>
+        </div>
+      )}
+    </Screen>
   )
 }

@@ -1,18 +1,28 @@
-import Placeholder from '../components/Placeholder.jsx'
+import { Screen } from '../components/ui.jsx'
+import StatusTop from '../components/StatusTop.jsx'
+import { useToast } from '../components/Toast.jsx'
+import { usePlan } from '../lib/plan.js'
 
-// C1 — 플레이스홀더. 실제 화면으로 교체할 때 이 파일만 바꾸면 된다.
+// C1 70% 미만: Top3 블러 + 자물쇠 (주도자도 동일, 미리보기 없음)
 export default function C1() {
+  const { count, need } = usePlan()
+  const [toast, show] = useToast()
+  const left = Math.max(0, need - count)
   return (
-    <Placeholder
-      id="C1"
-      notes={[
-    "C 공통 상단(진행 바 + 70% 기준선, 이름 칩, 내 응답 카드)",
-    "Top3 블러 + 자물쇠",
-    "\"1명만 더 답하면 Top3 공개!\"",
-      ]}
-      next={[
-    { label: "(응답 70% 도달 시)", to: "C2" },
-      ]}
-    />
+    <Screen>
+      <StatusTop onShare={() => show('카톡으로 공유했어 (데모)')} />
+      <div className="card locked" style={{ minHeight: 200, justifyContent: 'center' }} aria-label="Top3 잠김">
+        {[1, 2, 3].map((r) => (
+          <div key={r} className="row" style={{ flexWrap: 'nowrap' }} aria-hidden="true">
+            <span className="rk">{r}위</span><span className="locked__bar" />
+          </div>
+        ))}
+        <div className="locked__cover">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>
+          <p className="t-body" style={{ fontWeight: 700 }}>{left}명만 더 답하면 Top3 공개!</p>
+        </div>
+      </div>
+      {toast}
+    </Screen>
   )
 }
