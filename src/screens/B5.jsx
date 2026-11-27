@@ -1,17 +1,17 @@
 import { useState } from 'react'
-import { Screen, Button, Chip, Modal } from '../components/ui.jsx'
+import { Screen, Button, Modal, TopBar } from '../components/ui.jsx'
 import MonthGrid from '../components/MonthGrid.jsx'
 import { useGo } from '../router/useGo.js'
 import { useStore, responseDraft, needsTime, tbdDays, finalizeDays } from '../lib/drafts.js'
 import { useSubmitResponse } from '../lib/plan.js'
 
-export const MARK = { ok: '○', part: <span className="half" aria-hidden="true" />, no: '✕', tbd: '?' }
+export const MARK = { ok: '○', part: '△', no: '✕', tbd: '?' }
 export const LABEL = { ok: '가능', part: '부분 가능', no: '불가', tbd: '일정 아직 안 나옴' }
 
 export function Legend() {
   return (
     <div className="legend">
-      {Object.keys(MARK).map((s) => <span key={s}>{MARK[s]} {LABEL[s]}</span>)}
+      {Object.keys(MARK).map((s) => <span key={s} className={`lg--${s}`}><b>{MARK[s]}</b> {LABEL[s]}</span>)}
     </div>
   )
 }
@@ -32,7 +32,8 @@ export default function B5() {
 
   return (
     <Screen>
-      <p className="t-title">이렇게 읽었어.<br />맞는지 확인해줘</p>
+      <TopBar />
+      <p className="t-title">이렇게 읽었어. 맞는지 확인해볼래?</p>
       <Legend />
       <MonthGrid
         renderCell={(k, d) => {
@@ -46,16 +47,15 @@ export default function B5() {
         }}
         onTap={(k) => go('B5-S', { state: { date: k } })}
       />
-      <p className="t-caption">날짜를 누르면 고칠 수 있어</p>
       {need.length > 0 && (
-        <Chip on style={{ alignSelf: 'flex-start' }} onClick={() => go('B5-S', { state: { date: need[0], queue: true } })}>
+        <Button variant="primary" style={{ height: 44, fontSize: 13, boxShadow: '3px 3px 0 var(--c-deep)' }} onClick={() => go('B5-S', { state: { date: need[0], queue: true } })}>
           시간 입력 필요 {need.length}일 → 하나씩 보기
-        </Chip>
+        </Button>
       )}
       {tbd.length > 0 && (
-        <div className="card note row" style={{ justifyContent: 'space-between', flexWrap: 'nowrap' }}>
+        <div className="card note row card--shadow" style={{ justifyContent: 'space-between', flexWrap: 'nowrap', padding: '10px 12px' }}>
           <p className="t-caption" style={{ color: 'var(--c-ink)' }}>아직 일정 모르는 날 {tbd.length}일. 나오면 알려줄게</p>
-          <Chip style={{ flex: 'none' }} onClick={() => go('B5-N')}>알림 설정</Chip>
+          <Button style={{ width: 'auto', height: 40, flex: 'none', fontSize: 13, padding: '0 12px' }} onClick={() => go('B5-N')}>알림 설정</Button>
         </div>
       )}
       <div className="bottom">

@@ -1,9 +1,9 @@
-import { Screen, Button } from '../components/ui.jsx'
+import { Screen, Button, TopBar } from '../components/ui.jsx'
 import MonthGrid from '../components/MonthGrid.jsx'
 import { useGo } from '../router/useGo.js'
 import { useStore, responseDraft, finalizeDays } from '../lib/drafts.js'
 import { useSubmitResponse } from '../lib/plan.js'
-import { MARK, LABEL, Legend } from './B5.jsx'
+import { MARK, LABEL } from './B5.jsx'
 
 // B5-M 직접 체크: 전부 가능에서 시작. 탭 = 불가 토글, 길게 누르기 = 부분 가능(시간 선택 시트)
 export default function B5M() {
@@ -18,9 +18,11 @@ export default function B5M() {
 
   return (
     <Screen>
-      <p className="t-title">전부 되는 걸로 해뒀어.<br />안 되는 날만 콕 찍어줘</p>
-      <p className="t-caption">탭: 불가 ✕ 토글 · 길게 누르기: 시간 맞으면 돼요</p>
-      <Legend />
+      <TopBar />
+      <div>
+        <p className="t-title">전부 되는 걸로 해뒀어.<br />안 되는 날만 콕 찍어줘</p>
+        <p className="t-caption" style={{ color: 'var(--c-deep)' }}>탭: 불가 ✕ 토글 · 길게 누르기: 부분 가능</p>
+      </div>
       <MonthGrid
         renderCell={(k, d) => {
           const v = draft.days[k]

@@ -1,11 +1,15 @@
 import { useState } from 'react'
-import { Screen, Button, Steps } from '../components/ui.jsx'
+import { Screen, Button, Steps, TopBar } from '../components/ui.jsx'
 import { useGo } from '../router/useGo.js'
 import { useStore, planDraft } from '../lib/drafts.js'
 import { threshold } from '../lib/ranking.js'
 import '../styles/screens.css'
 
 const MAX = 20
+
+export const InfoIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true" style={{ flex: 'none' }}><circle cx="12" cy="12" r="9" /><path d="M12 11v6M12 7.5v.5" /></svg>
+)
 
 // A1 기본 정보: 약속 이름, 내 이름, 인원 N, 70% 기준 실시간 계산
 export default function A1() {
@@ -22,13 +26,16 @@ export default function A1() {
 
   return (
     <Screen>
+      <TopBar meta="1 / 4" />
       <Steps current={1} />
       <p className="t-title">어떤 약속이야?</p>
       <div>
-        <label className="field-label" htmlFor="a1n">약속 이름</label>
+        <div className="row" style={{ justifyContent: 'space-between' }}>
+          <label className="field-label" htmlFor="a1n">약속 이름</label>
+          <p className="counter">{d.title.length}/{MAX}</p>
+        </div>
         <input id="a1n" className="input" maxLength={MAX} value={d.title} placeholder="예: 연말 방어회 모임"
           onChange={(e) => set({ title: e.target.value })} aria-invalid={tried && !!errTitle} />
-        <p className="counter">{d.title.length}/{MAX}</p>
         {tried && errTitle && <p className="err">{errTitle}</p>}
       </div>
       <div>
@@ -43,10 +50,10 @@ export default function A1() {
           <Button aria-label="인원 줄이기" disabled={d.n <= 2} onClick={() => set({ n: d.n - 1 })}>−</Button>
           <span className="stepper__val" aria-live="polite">{d.n}</span>
           <Button aria-label="인원 늘리기" disabled={d.n >= 15} onClick={() => set({ n: d.n + 1 })}>+</Button>
-          <span className="t-body">명</span>
         </div>
       </div>
       <div className="card note">
+        <InfoIcon />
         <p className="t-caption" style={{ color: 'var(--c-ink)' }}>
           {d.n}명 중 {threshold(d.n)}명(70%)이 답하면 결과가 나와
         </p>

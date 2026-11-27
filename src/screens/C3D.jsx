@@ -22,7 +22,7 @@ export default function C3D() {
         title={<>마감됐는데 {responseCount(state)}명만 답했어.<br />이대로 확정할까?</>}
         actions={[
           { label: '아니오', variant: 'secondary', onClick: () => setStep(2) },
-          { label: '예, Top3 볼래', variant: 'primary', onClick: () => { actions.revealEarly(); toPlan() } },
+          { label: '예', variant: 'primary', onClick: () => { actions.revealEarly(); toPlan() } },
         ]}
       />
     )

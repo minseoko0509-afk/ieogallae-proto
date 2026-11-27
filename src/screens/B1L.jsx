@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Screen, Button } from '../components/ui.jsx'
+import { Screen, Button, TopBar } from '../components/ui.jsx'
 import { useGo } from '../router/useGo.js'
 import { usePlan } from '../lib/plan.js'
 import { responseDraft } from '../lib/drafts.js'
@@ -25,26 +25,31 @@ export default function B1L() {
 
   return (
     <Screen>
-      <p className="t-title">벌써 날짜 후보가 나왔어!<br />되는 날만 체크해줘</p>
-      <p className="t-caption">{EVENT.title} · 순위는 네 체크까지 반영한 거야</p>
+      <TopBar back={false} title={<span style={{ fontWeight: 500, fontSize: 12 }}>{EVENT.title}</span>} />
+      <div>
+        <p className="t-title">벌써 날짜 후보가 나왔어!<br />되는 날만 체크해줘</p>
+        <p className="t-caption" style={{ color: 'var(--c-deep)' }}>여러 개 골라도 돼 · 순위는 실시간으로 바뀌어</p>
+      </div>
       <div className="stack" style={{ gap: 8 }}>
         {preview.map((t) => (
-          <label key={t.date} className={`card choice ${checked.includes(t.date) ? 'is-on' : ''}`} style={{ padding: 10 }}>
-            <input type="checkbox" checked={checked.includes(t.date)} onChange={() => toggle(t.date)} />
-            <span className="rk">{t.rank}위</span>
+          <label key={t.date} className={`card choice ${checked.includes(t.date) ? 'is-on' : ''}`} style={{ padding: '12px 14px' }}>
             <span style={{ flex: 1 }}>
-              <span className="t-body" style={{ display: 'block', fontWeight: 600 }}>{formatDateKo(t.date)}</span>
-              <span className="t-caption">{describeTally(t)}</span>
+              <span className="row" style={{ gap: 8 }}>
+                <span className={`rk ${t.rank === 1 ? 'rk--1' : ''}`}>{t.rank === 1 ? '♛ ' : ''}{t.rank}위</span>
+                <span className="t-body" style={{ fontWeight: 700 }}>{formatDateKo(t.date)}</span>
+              </span>
+              <span className="t-caption" style={{ display: 'block', marginTop: 6, color: 'var(--c-deep)' }}>{describeTally(t)}</span>
             </span>
+            <input type="checkbox" checked={checked.includes(t.date)} onChange={() => toggle(t.date)} />
           </label>
         ))}
       </div>
       <p className="t-caption">Top3 밖 날짜는 안 되는 걸로 넣을게</p>
       <div className="bottom">
-        <Button variant="primary" disabled={!checked.length} onClick={submit}>제출</Button>
         <Button variant="text" onClick={() => { responseDraft.reset(); responseDraft.set({ name: meName ?? '' }); go('B2') }}>
           이 중에 되는 날이 없어요
         </Button>
+        <Button variant="primary" disabled={!checked.length} onClick={submit}>제출</Button>
       </div>
     </Screen>
   )

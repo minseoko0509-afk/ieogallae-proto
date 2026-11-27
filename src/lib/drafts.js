@@ -36,6 +36,8 @@ export const planDraft = createStore(() => ({
   time: '23:59',
   notify: { email: false, push: false },
   email: '',
+  // A3-C 초대장 꾸미기: 삐루 포즈 또는 내 사진, 모서리 테이프, 픽셀 스티커
+  deco: { pose: 'hello', photo: null, tape: 'pink', stickers: ['heart', 'star', 'ribbon', 'sparkle'] },
 }))
 
 // ---------- B5. 캡처에서 읽은 일정 (AI 분석 결과 가짜) ----------

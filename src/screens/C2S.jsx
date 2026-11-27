@@ -15,7 +15,7 @@ export default function C2S() {
 
   const group = (label, names) => (
     <div>
-      <p className="t-caption" style={{ fontWeight: 700, color: 'var(--c-ink)' }}>{label} {names.length}</p>
+      <p className="t-body" style={{ fontWeight: 700 }}>{label} {names.length}</p>
       {names.length ? (
         <div className="row" style={{ gap: 6, marginTop: 6 }}>{names.map((n) => <span key={n} className="nm">{n}</span>)}</div>
       ) : (
@@ -27,7 +27,7 @@ export default function C2S() {
   return (
     <BottomSheet onClose={() => go('C2')}>
       <div className="row">
-        {rank && <span className="rk">{rank}위</span>}
+        {rank && <span className={`rk ${rank === 1 ? 'rk--1' : ''}`}>{rank}위</span>}
         <p className="t-title">{formatDateKo(date)}</p>
       </div>
       {group('가능', t.ok)}

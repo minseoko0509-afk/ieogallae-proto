@@ -8,8 +8,8 @@ export default function A3M() {
     <Modal
       title="결과 나와도 알림을 못 받을 수 있어. 괜찮아?"
       actions={[
-        { label: '알림 설정할래', variant: 'secondary', onClick: () => go('A3') },
-        { label: '괜찮아, 만들기', variant: 'primary', onClick: () => go('A4') },
+        { label: '응, 괜찮아', variant: 'secondary', onClick: () => go('A3-C') },
+        { label: '알림 설정할래', variant: 'primary', onClick: () => go('A3') },
       ]}
     >
       <p className="t-caption">관리 링크를 잃어버리면 확정을 못 할 수도 있어</p>

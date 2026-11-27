@@ -1,14 +1,16 @@
-// 화면 목록 (spec.md "화면 목록"). 24개 화면 ID의 단일 출처.
+// 화면 목록 (spec.md "화면 목록" + Stitch 와이어프레임의 S0, A3-C). 26개 화면 ID의 단일 출처.
 // kind: page = 전체 화면, modal = 중앙 모달, sheet = 바텀시트
 // base: modal/sheet가 뒤에 깔고 뜨는 화면 ID
 // path: spec.md 기준 실제 URL (참고용). 바로가기는 /s/:id 로 연다.
 export const SCREENS = [
+  { id: 'S0', group: '진입', kind: 'page', path: '/', title: '스플래시' },
   { id: 'L0', group: '진입', kind: 'page', path: '/', title: '랜딩' },
 
   { id: 'A1', group: 'A', kind: 'page', path: '/new', title: '기본 정보', step: 1 },
   { id: 'A2', group: 'A', kind: 'page', path: '/new', title: '응답 설정', step: 2 },
   { id: 'A3', group: 'A', kind: 'page', path: '/new', title: '마감·알림', step: 3 },
   { id: 'A3-M', group: 'A', kind: 'modal', base: 'A3', path: '/new', title: '알림 미설정 확인' },
+  { id: 'A3-C', group: 'A', kind: 'page', path: '/new', title: '초대장 꾸미기' },
   { id: 'A4', group: 'A', kind: 'page', path: '/new', title: '생성 완료·공유', step: 4 },
 
   { id: 'B1', group: 'B', kind: 'page', path: '/p/:id', title: '초대 랜딩' },
