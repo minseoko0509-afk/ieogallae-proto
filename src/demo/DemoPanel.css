@@ -1,6 +1,6 @@
 /* 데모 컨트롤 패널: 프로토타입 바깥 도구라 화면 디자인 규칙(그레이스케일)만 따르고 폰 프레임과는 분리 */
 .demo-panel {
-  width: 300px;
+  width: 100%;
   box-sizing: border-box;
   max-height: 844px;
   overflow-y: auto;
