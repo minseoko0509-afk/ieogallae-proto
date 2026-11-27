@@ -3,6 +3,7 @@ import { useAppState } from '../state/AppState.jsx'
 import * as sel from '../state/selectors.js'
 import { EVENT, DATES } from '../state/sampleData.js'
 import { threshold, top3 } from './ranking.js'
+import { useNavigate } from 'react-router-dom'
 import { responseDraft } from './drafts.js'
 
 export function usePlan() {
@@ -35,3 +36,15 @@ export function summarize(resp) {
   for (const v of Object.values(resp?.days ?? {})) c[v.s] = (c[v.s] ?? 0) + 1
   return `가능 ${c.ok}일 · 부분 ${c.part}일 · 불가 ${c.no}일${c.tbd ? ` · 미정 ${c.tbd}일` : ''}`
 }
+
+// 실제 주소로 이동: /p/demo (상태대로 C1/C2/B1…), /p/demo/c (확정)
+export function usePlanNav() {
+  const navigate = useNavigate()
+  return {
+    toPlan: (opts) => navigate(`/p/${EVENT.id}`, opts),
+    toConfirm: (opts) => navigate(`/p/${EVENT.id}/c`, opts),
+  }
+}
+
+export const shareUrl = (path = '') =>
+  `${typeof location !== 'undefined' ? location.origin : 'https://ieo.app'}/p/${EVENT.id}${path}`

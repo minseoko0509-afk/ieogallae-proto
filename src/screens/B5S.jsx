@@ -12,6 +12,7 @@ export default function B5S() {
   const go = useGo()
   const { state: nav } = useLocation()
   const [draft, setDraft] = useStore(responseDraft)
+  const back = nav?.back ?? 'B5'
   const date = nav?.date ?? needsTime(draft.days)[0] ?? '2026-12-19'
   const cur = draft.days[date]
   const [s, setS] = useState(cur.s === 'tbd' ? 'ok' : cur.s)
@@ -21,8 +22,8 @@ export default function B5S() {
     const next = { ...draft.days, [date]: { ...cur, s, ...(s === 'part' ? { from } : { from: undefined }) } }
     setDraft({ days: next })
     const rest = needsTime(next)
-    if (nav?.queue && rest.length) go('B5-S', { state: { date: rest[0], queue: true }, replace: true })
-    else go('B5')
+    if (nav?.queue && rest.length) go('B5-S', { state: { date: rest[0], queue: true, back }, replace: true })
+    else go(back)
   }
 
   const opt = (val, text) => (
@@ -33,7 +34,7 @@ export default function B5S() {
   )
 
   return (
-    <BottomSheet onClose={() => go('B5')}>
+    <BottomSheet onClose={() => go(back)}>
       <p className="t-title" style={{ fontSize: 20 }}>{formatDateKo(date)}</p>
       <div className="card note">
         <div className="row" style={{ justifyContent: 'space-between' }}>

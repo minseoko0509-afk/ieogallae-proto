@@ -57,7 +57,7 @@ const READ = {
 
 export const dayKey = (d) => `2026-12-${String(d).padStart(2, '0')}`
 
-function readDays() {
+export function readDays() {
   const days = {}
   for (let d = 1; d <= 31; d++) {
     const r = READ[d]
@@ -66,7 +66,15 @@ function readDays() {
   return days
 }
 
-export const responseDraft = createStore(() => ({ days: readDays(), source: 'capture' }))
+// 직접 체크(B5-M) 시작값: 전부 가능
+export function allOkDays() {
+  const days = {}
+  for (let d = 1; d <= 31; d++) days[dayKey(d)] = { s: 'ok', ev: '' }
+  return days
+}
+
+// name: B2에서 입력 / late: B1-L(Top3만 체크)에서 시작 / files: B3 캡처 썸네일
+export const responseDraft = createStore(() => ({ name: '', days: readDays(), source: 'capture', late: false, files: [] }))
 
 // 시간 입력이 필요한 날 (부분 가능인데 시각 미입력)
 export const needsTime = (days) =>

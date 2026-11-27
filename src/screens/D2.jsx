@@ -5,6 +5,7 @@ import { useGo } from '../router/useGo.js'
 import { useToast, copyText } from '../components/Toast.jsx'
 import { useConfirmed } from './D1.jsx'
 import { formatDateShort } from '../lib/ranking.js'
+import { shareUrl } from '../lib/plan.js'
 
 const hourText = (time) => {
   const [h, m] = time.split(':').map(Number)
@@ -20,7 +21,7 @@ export default function D2() {
     `${formatDateShort(c.date)} ${hourText(c.time)} ${EVENT.title} 확정! 이어갈래로 잡았어, 캘린더에 넣어둬`,
   )
   const [toast, show] = useToast()
-  const link = `ieo.app/p/${EVENT.id ?? 'a1b2'}/c`
+  const link = shareUrl('/c')
 
   return (
     <BottomSheet onClose={() => go('D1')}>
