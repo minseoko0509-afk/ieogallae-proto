@@ -6,15 +6,9 @@ import {
   ROLES, ROLE_LABEL, CAPTURES, CAPTURE_LABEL,
   responseCount, need, resolveScreen, explainScreen, me, respondedNames,
 } from '../state/selectors.js';
+import { SCREENS, GROUPS } from '../screens/registry.js';
 import './DemoPanel.css';
 
-export const SCREEN_GROUPS = [
-  { label: '진입', ids: ['L0'] },
-  { label: 'A. 만들기', ids: ['A1', 'A2', 'A3', 'A3-M', 'A4'] },
-  { label: 'B. 응답', ids: ['B1', 'B1-L', 'B2', 'B3', 'B4', 'B5', 'B5-S', 'B5-N', 'B5-T', 'B5-M', 'B6'] },
-  { label: 'C. 현황', ids: ['C1', 'C2', 'C2-S', 'C3', 'C3-D'] },
-  { label: 'D. 확정', ids: ['D1', 'D2'] },
-];
 
 function Seg({ name, options, labels, value, onChange }) {
   return (
@@ -106,16 +100,17 @@ export default function DemoPanel({ onJump, onFollowState, currentScreen }) {
 
       <section>
         <h3>화면 바로가기</h3>
-        {SCREEN_GROUPS.map((g) => (
-          <div key={g.label} className="demo-group">
+        {GROUPS.map((g) => (
+          <div key={g.key} className="demo-group">
             <span className="demo-group-label">{g.label}</span>
             <div className="demo-chips">
-              {g.ids.map((id) => (
+              {SCREENS.filter((sc) => sc.group === g.key).map(({ id, title }) => (
                 <button
                   key={id}
                   type="button"
                   className={`demo-chip${currentScreen === id ? ' on' : ''}`}
                   aria-current={currentScreen === id ? 'page' : undefined}
+                  title={title}
                   onClick={() => onJump?.(id)}
                 >
                   {id}

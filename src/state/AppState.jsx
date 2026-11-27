@@ -45,6 +45,9 @@ function reducer(s, a) {
       return { ...s, earlyReveal: true };
     case 'deferC3D':
       return { ...s, c3dDeferred: true };
+    case 'reenter':
+      // 관리 링크로 다시 들어옴 → C3-D를 또 물어봄
+      return { ...s, c3dDeferred: false };
     case 'reset':
       return INITIAL_STATE;
     case 'replace':
@@ -84,6 +87,7 @@ export function AppStateProvider({ children }) {
     submitResponse: (response) => dispatch({ type: 'submitResponse', response }),
     revealEarly: () => dispatch({ type: 'revealEarly' }),
     deferC3D: () => dispatch({ type: 'deferC3D' }),
+    reenter: () => dispatch({ type: 'reenter' }),
     reset: () => dispatch({ type: 'reset' }),
   }), []);
 

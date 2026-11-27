@@ -1,9 +1,0 @@
-.c3d { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; }
-.c3d-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-.c3d-dim { position: absolute; inset: 0; background: rgba(0, 0, 0, .4); }
-.c3d-modal { position: relative; width: 100%; background: #fff; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 16px; }
-.c3d-q { margin: 0; font-size: 16px; font-weight: 700; line-height: 1.5; color: #333; }
-.c3d-actions { display: flex; gap: 8px; }
-.c3d-btn, .c3d-btn2 { flex: 1; min-height: 48px; border-radius: 12px; font: inherit; font-size: 15px; cursor: pointer; }
-.c3d-btn { background: #333; color: #fff; border: 0; font-weight: 600; }
-.c3d-btn2 { background: #fff; color: #333; border: 1.5px solid #333; }
