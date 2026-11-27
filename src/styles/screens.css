@@ -91,10 +91,11 @@
 }
 
 /* ---------- 확정 카드 ---------- */
-.confirm-card { padding: 0; overflow: hidden; border-color: var(--c-pink-3); }
+.card.confirm-card { padding: 0; overflow: hidden; border-color: var(--c-pink-3); }
 .confirm-card .illust { border-radius: 0; border: 0; border-bottom: 1.5px dashed var(--c-pink-3); }
 /* D1 확정 카드: 진보라 축하 카드 */
 .card.confirm-card--party { background: var(--c-purple-dk); border-color: var(--c-purple-dk); color: var(--c-white); }
+.card.confirm-card--party .confirm-card__art { background: radial-gradient(circle at 50% 60%, #5a3a96, var(--c-purple-dk)); border-bottom-color: rgba(255,255,255,0.15); }
 .card.confirm-card--party .illust { background: radial-gradient(circle at 50% 70%, #5a3a96, var(--c-purple-dk)); color: var(--c-yellow); border-bottom-color: rgba(255,255,255,0.15); }
 .card.confirm-card--party .t-title { color: var(--c-white); }
 .card.confirm-card--party .t-title em { font-style: normal; color: var(--c-yellow); }
@@ -175,3 +176,21 @@ input[type='radio'], input[type='checkbox'] { accent-color: var(--c-purple); wid
 .landing .bottom { gap: 12px; }
 .landing .btn--text { color: var(--c-magenta); }
 .btn--soft { background: rgba(255, 255, 255, 0.6); color: var(--c-magenta); }
+
+/* 확정·초대 카드 상단 캐릭터 영역 */
+.confirm-card__art {
+  display: flex; justify-content: center; padding: 18px 0;
+  background: linear-gradient(135deg, var(--c-pink-2), var(--c-lav-1));
+  border-bottom: 1.5px dashed var(--c-pink-3);
+}
+/* 응답자 이름 칩 + 동물 */
+.nm.nm--avatar { gap: 5px; padding-left: 3px; }
+.nm--avatar .avatar { border-width: 1px; box-shadow: none; }
+/* B6 식탁 + 동물 자리 */
+.table__top {
+  position: absolute; width: 180px; height: 130px; border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 40%, #fff6fb, var(--c-pink-2));
+  box-shadow: inset 0 -6px 0 var(--c-pink-3), 0 8px 20px rgba(242, 54, 155, 0.15);
+}
+.seat.is-on { background: none; box-shadow: none; }
+.seat .avatar { box-shadow: 0 0 0 2px var(--c-pink), 0 4px 10px rgba(123, 87, 224, 0.25); }

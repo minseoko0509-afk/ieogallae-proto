@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Screen, Button, Chip, Illust } from '../components/ui.jsx'
+import { Screen, Button, Chip, Bird } from '../components/ui.jsx'
 import { useGo } from '../router/useGo.js'
 import { useAppState } from '../state/AppState.jsx'
 import { captureOutcome } from '../state/selectors.js'
@@ -37,7 +37,7 @@ export default function B4() {
   if (phase === 'month') {
     return (
       <Screen>
-        <Illust label="뱁새 갸우뚱" h={180} />
+        <Bird mood="curious" size={170} />
         <p className="t-title">이거 몇 월이야?</p>
         <p className="t-caption">날짜는 읽었는데 달이 안 보여</p>
         <div className="row">
@@ -49,7 +49,7 @@ export default function B4() {
   if (phase === 'retry') {
     return (
       <Screen>
-        <Illust label="뱁새 당황" h={180} />
+        <Bird mood="surprised" size={170} />
         <p className="t-title">잘 안 읽혔어</p>
         <p className="t-caption">한 번만 더 쪼아볼게. 그래도 안 되면 직접 체크하자</p>
         <div className="bottom">
@@ -60,7 +60,7 @@ export default function B4() {
   }
   return (
     <Screen>
-      <div className="peck" aria-hidden="true"><Illust label="뱁새 쪼는 중" h={200} /></div>
+      <div className="peck" aria-hidden="true" style={{ alignSelf: 'center' }}><Bird mood="walk" size={190} /></div>
       <p className="t-title" role="status">뱁새가 열심히 쪼는 중…</p>
       <p className="t-caption">최대 10초 걸려{attempt ? ' · 다시 해보는 중' : ''}</p>
       <div className="dots" aria-hidden="true"><i /><i /><i /></div>

@@ -1,4 +1,4 @@
-import { Screen, Button, Steps, Illust } from '../components/ui.jsx'
+import { Screen, Button, Steps, Bird } from '../components/ui.jsx'
 import { useGo } from '../router/useGo.js'
 import { useToast, copyText } from '../components/Toast.jsx'
 import { useStore, planDraft, responseDraft } from '../lib/drafts.js'
@@ -20,7 +20,7 @@ export default function A4() {
       <Steps current={4} />
       <p className="t-title">초대장 완성! 단톡방에 뿌려줘</p>
       <div className="card confirm-card">
-        <Illust label="OG-1 초대 카드 미리보기 · 뱁새" h={150} />
+        <div className="confirm-card__art"><Bird mood="heart" size={130} round /></div>
         <div className="confirm-card__body">
           <p className="t-body" style={{ fontWeight: 600 }}>{d.title}</p>
           <p className="t-caption">우리 이어갈래? 되는 날 알려줘 · 0/{d.n} 응답</p>

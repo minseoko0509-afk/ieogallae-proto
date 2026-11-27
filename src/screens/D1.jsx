@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { Screen, Button, Illust } from '../components/ui.jsx'
+import { Screen, Button, Bird } from '../components/ui.jsx'
 import { useGo } from '../router/useGo.js'
 import { usePlan, usePlanNav, shareUrl } from '../lib/plan.js'
 import { tallyDate, formatDateKo } from '../lib/ranking.js'
@@ -30,7 +30,7 @@ export default function D1() {
   return (
     <Screen>
       <div className="card confirm-card confirm-card--party">
-        <Illust label="뱁새 축하 일러스트" h={170} />
+        <div className="confirm-card__art"><Bird mood="jump" size={140} round /></div>
         <div className="confirm-card__body">
           <p className="t-title">{EVENT.title} <em>확정!</em></p>
           <p className="t-body">{formatDateKo(c.date)} {c.time}</p>

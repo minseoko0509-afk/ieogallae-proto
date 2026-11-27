@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { Screen, Button } from '../components/ui.jsx'
+import { Screen, Button, Bird } from '../components/ui.jsx'
 import { useGo } from '../router/useGo.js'
 import { useAppState } from '../state/AppState.jsx'
 import { EVENT } from '../state/sampleData.js'
@@ -28,6 +28,7 @@ export default function L0() {
   return (
     <Screen className="landing">
       <div className="landing__hero">
+        <Bird mood="hello" size={150} round />
         <h1 className="logo">이어갈래?</h1>
         <p className="landing__tag">올해 못 본 친구, 이어갈래?<br />70%만 답하면 날짜 나와</p>
       </div>

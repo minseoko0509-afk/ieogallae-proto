@@ -1,4 +1,4 @@
-import { Screen, Button, Illust } from '../components/ui.jsx'
+import { Screen, Button, Avatar } from '../components/ui.jsx'
 import { useToast } from '../components/Toast.jsx'
 import { usePlan, usePlanNav } from '../lib/plan.js'
 
@@ -16,13 +16,13 @@ export default function B6() {
   return (
     <Screen>
       <div className="table" aria-label={`${seats}석 중 ${count}석 참`}>
-        <Illust label="식탁" h={130} w={180} style={{ position: 'absolute', left: C - 90, top: C - 65, borderRadius: '50%' }} />
+        <div className="table__top" style={{ left: C - 90, top: C - 65 }} aria-hidden="true" />
         {Array.from({ length: seats }, (_, i) => {
           const a = (i / seats) * 2 * Math.PI - Math.PI / 2
           const on = i < count
           return (
             <span key={i} className={`seat ${on ? 'is-on' : ''}`} style={{ left: C + R * Math.cos(a) - 25, top: C + R * Math.sin(a) - 25 }}>
-              {on ? responded[i]?.[0] : ''}
+              {on && responded[i] ? <Avatar name={responded[i]} size={50} /> : ''}
             </span>
           )
         })}

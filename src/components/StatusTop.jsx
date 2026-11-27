@@ -1,4 +1,4 @@
-import { Button } from './ui.jsx'
+import { Button, Avatar } from './ui.jsx'
 import { useGo } from '../router/useGo.js'
 import { usePlan, summarize } from '../lib/plan.js'
 import { responseDraft } from '../lib/drafts.js'
@@ -31,7 +31,7 @@ export default function StatusTop({ onShare, compact }) {
             </div>
             <p className="t-caption" style={{ paddingLeft: `max(0px, calc(${linePct}% - 70px))` }}>여기 넘으면 결과 공개</p>
             <div className="row" style={{ gap: 6 }}>
-              {responded.map((n) => <span key={n} className="nm">{n}</span>)}
+              {responded.map((n) => <span key={n} className="nm nm--avatar"><Avatar name={n} size={22} />{n}</span>)}
             </div>
           </>
         )}

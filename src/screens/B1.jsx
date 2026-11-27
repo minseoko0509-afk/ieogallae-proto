@@ -1,4 +1,4 @@
-import { Screen, Button, Illust } from '../components/ui.jsx'
+import { Screen, Button, Bird, Avatar } from '../components/ui.jsx'
 import { useGo } from '../router/useGo.js'
 import { usePlan } from '../lib/plan.js'
 import { responseDraft } from '../lib/drafts.js'
@@ -23,13 +23,13 @@ export default function B1() {
   const { EVENT, N, count, responded, meName } = usePlan()
   return (
     <Screen>
-      <Illust label="뱁새 · 초대장" h={150} />
+      <Bird mood="cheer" size={150} />
       <p className="t-title">{EVENT.host}가 {EVENT.title}에<br />초대했어</p>
       <PlanInfo EVENT={EVENT} />
       <div className="stack" style={{ gap: 8 }}>
         <p className="t-body" style={{ fontWeight: 700 }}>{N}명 중 {count}명 응답</p>
         <div className="row" style={{ gap: 6 }}>
-          {responded.map((n) => <span key={n} className="avatar" title={n}>{n[0]}</span>)}
+          {responded.map((n) => <Avatar key={n} name={n} />)}
           {Array.from({ length: N - count }, (_, i) => <span key={i} className="avatar avatar--empty" aria-hidden="true" />)}
         </div>
       </div>
