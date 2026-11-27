@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>확정 공유와 시스템</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;font-family:system-ui,-apple-system,'Apple SD Gothic Neo',sans-serif;color:#222}
+.ph{width:390px;height:844px;box-sizing:border-box;border:2px solid #333;border-radius:32px;background:#fff;padding:52px 20px 24px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
+.id{font-size:14px;font-weight:700;margin:0 0 10px}
+.id span{font-weight:400;color:#555}
+.h{font-size:22px;font-weight:700;margin:0;line-height:1.35}
+.p{font-size:15px;margin:0;color:#444;line-height:1.5}
+.c{font-size:12px;margin:0;color:#555;line-height:1.5}
+.box{background:#eee;border:1px dashed #888;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#444;text-align:center;padding:8px}
+.btn{width:100%;height:52px;border-radius:12px;background:#333;color:#fff;border:0;font-size:16px;font-weight:600;font-family:inherit}
+.btn2{width:100%;height:48px;border-radius:12px;background:#fff;color:#333;border:1.5px solid #333;font-size:15px;font-family:inherit}
+.card{border:1.5px solid #ccc;border-radius:14px;padding:12px;background:#fff}
+.bot{margin-top:auto;display:flex;flex-direction:column;gap:8px}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:2px solid #333;border-radius:22px 22px 0 0;padding:10px 20px 24px;display:flex;flex-direction:column;gap:12px}
+.dim{position:absolute;inset:0;background:rgba(0,0,0,.4)}
+.td{padding:8px;border-top:1px solid #ddd;font-size:12px;color:#333;vertical-align:top}
+</style>
+</helmet>
+<div style="width:1660px;height:1040px;box-sizing:border-box;padding:40px 60px;background:#f5f5f5;display:flex;flex-direction:column;gap:20px">
+<h1 style="margin:0;font-size:28px">D. 확정·공유 /p/{id}/c + 시스템</h1>
+<div style="display:flex;gap:40px;align-items:flex-start">
+
+<div>
+<p class="id">D1 <span>확정 화면</span></p>
+<div class="ph">
+<div class="card" style="padding:0;overflow:hidden;border-color:#333">
+<div class="box" style="height:170px;border-radius:0;border:0;border-bottom:1px dashed #888">[뱁새 축하 일러스트]</div>
+<div style="padding:14px;display:flex;flex-direction:column;gap:6px">
+<p class="h">연말 방어회 모임 확정!</p>
+<p class="p">12월 20일 (일) 18:00</p>
+<p class="c">참석 5 / 6 · 우리 계속 이어가자</p>
+</div>
+</div>
+<div style="display:flex;gap:8px"><button class="btn2" style="flex:1">구글 캘린더에 추가</button><button class="btn2" style="flex:1">폰 캘린더 (.ics)</button></div>
+<div class="card" style="border-style:dashed;display:flex;flex-direction:column;gap:8px">
+<p class="c" style="font-weight:700;color:#222">주도자에게만</p>
+<div style="display:flex;gap:8px"><button class="btn2" style="flex:1;height:44px">확정 수정 → C3</button><button class="btn2" style="flex:1;height:44px">확정 취소 → C2</button></div>
+<p class="c">수정·취소 후 "친구들한테 알려줘" 공유 시트(D2) 자동 표시</p>
+</div>
+<p class="c">확정 후 /p/{id}로 들어오면 모두 이 화면으로 이동 · 장소·메모는 다루지 않음</p>
+<div class="bot"><button class="btn">공유하기 → D2</button></div>
+</div>
+</div>
+
+<div>
+<p class="id">D2 <span>공유 시트</span></p>
+<div class="ph">
+<div class="box" style="height:300px">D1 확정 화면</div>
+<div class="dim"></div>
+<div class="sheet">
+<span style="width:40px;height:4px;border-radius:2px;background:#bbb;align-self:center"></span>
+<p class="h" style="font-size:20px">친구들한테 알려줘</p>
+<label for="d2m" class="c">공유 문구 (수정 가능)</label>
+<textarea id="d2m" style="height:110px;border:1.5px solid #bbb;border-radius:10px;padding:12px;font-size:14px;font-family:inherit;resize:none">12/20(일) 18시 연말 방어회 모임 확정! 이어갈래로 잡았어, 캘린더에 넣어둬</textarea>
+<div style="display:flex;gap:8px"><button class="btn" style="flex:1;height:48px">카톡 공유</button><button class="btn2" style="flex:1">링크 복사</button></div>
+<p class="c">링크: /p/{id}/c (OG-2 확정 카드로 미리보기)</p>
+</div>
+</div>
+</div>
+
+<div style="width:680px;display:flex;flex-direction:column;gap:16px">
+<p class="id">시스템 <span>(화면 아님)</span></p>
+<div style="display:flex;gap:20px">
+<div style="flex:1"><p class="c" style="font-weight:700;color:#222;margin-bottom:6px">OG-1 초대 카드 (1200×630)</p>
+<div class="box" style="height:168px;flex-direction:column;gap:6px;background:#fff;border:1.5px solid #333"><span>[뱁새]</span><b style="font-size:15px;color:#222">연말 방어회 모임</b><span>우리 이어갈래? 되는 날 알려줘</span></div></div>
+<div style="flex:1"><p class="c" style="font-weight:700;color:#222;margin-bottom:6px">OG-2 확정 카드 (1200×630, 별도 URL)</p>
+<div class="box" style="height:168px;flex-direction:column;gap:6px;background:#fff;border:1.5px solid #333"><b style="font-size:26px;color:#222">12월 20일 (일)</b><span>연말 방어회 모임 확정</span></div></div>
+</div>
+<div class="card">
+<p class="c" style="font-weight:700;color:#222;margin-bottom:6px">E1·E2 메일 (주도자·알림 신청자)</p>
+<p class="c">제목: [이어갈래?] 연말 방어회 모임, 5명 모였어! Top3 확인해줘</p>
+<p class="c">발송 시점: 70% 도달 · 전원 응답 · 마감 · 응답 예약일(B5-N)</p>
+<p class="c">본문: 현황 요약 + [결과 보기] + 관리 링크 (주도자에게만)</p>
+</div>
+<div class="card">
+<p class="c" style="font-weight:700;color:#222;margin-bottom:6px">마감 처리 규칙 (마감 시각 미설정 시 마감일 23:59)</p>
+<table style="width:100%;border-collapse:collapse">
+<tr><th class="td" style="text-align:left;border-top:0">상황</th><th class="td" style="text-align:left;border-top:0">Top3</th><th class="td" style="text-align:left;border-top:0">이후</th></tr>
+<tr><td class="td">마감 전, 70% 미만</td><td class="td">잠금 (C1)</td><td class="td">응답 대기</td></tr>
+<tr><td class="td">70% 이상 (마감 무관)</td><td class="td">공개 = 잠정 결과 (C2)</td><td class="td">늦게 온 사람은 Top3만 체크 (B1-L), 주도자 확정</td></tr>
+<tr><td class="td">마감 후, 70% 미만</td><td class="td">주도자 "이대로 확정?" 예 → 공개</td><td class="td">아니오 → 재확인 후 미루면 미확정 유지 (C3-D)</td></tr>
+</table>
+</div>
+<div class="card">
+<p class="c" style="font-weight:700;color:#222;margin-bottom:6px">공통 계산</p>
+<p class="c">70% 기준 = ceil(N × 0.7) · 순위 점수 = 가능 + 0.5 × 부분 가능 · 주도자 식별 = 관리 링크 토큰(?k=) 브라우저 저장</p>
+</div>
+</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1660,"height":1040}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>진입과 약속 만들기</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;font-family:system-ui,-apple-system,'Apple SD Gothic Neo',sans-serif;color:#222}
+.ph{width:390px;height:844px;box-sizing:border-box;border:2px solid #333;border-radius:32px;background:#fff;padding:52px 20px 24px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.id{font-size:14px;font-weight:700;margin:0 0 10px}
+.id span{font-weight:400;color:#555}
+.h{font-size:22px;font-weight:700;margin:0;line-height:1.35}
+.p{font-size:15px;margin:0;color:#444;line-height:1.5}
+.c{font-size:12px;margin:0;color:#555;line-height:1.5}
+.box{background:#eee;border:1px dashed #888;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#444;text-align:center;padding:8px}
+.btn{width:100%;height:52px;border-radius:12px;background:#333;color:#fff;border:0;font-size:16px;font-weight:600;font-family:inherit}
+.btn2{width:100%;height:48px;border-radius:12px;background:#fff;color:#333;border:1.5px solid #333;font-size:15px;font-family:inherit}
+.tbtn{background:none;border:0;color:#333;text-decoration:underline;font-size:14px;font-family:inherit;padding:8px}
+.chip{border:1.5px solid #999;border-radius:20px;padding:8px 16px;font-size:14px;background:#fff;color:#333;font-family:inherit}
+.on{background:#333;color:#fff;border-color:#333}
+.in{height:48px;border:1.5px solid #bbb;border-radius:10px;padding:0 12px;font-size:15px;width:100%;box-sizing:border-box;font-family:inherit}
+.lab{display:block;font-size:13px;color:#555;margin:0 0 6px}
+.card{border:1.5px solid #ccc;border-radius:14px;padding:14px}
+.bot{margin-top:auto;display:flex;flex-direction:column;gap:8px}
+.prog{display:flex;gap:6px}
+.prog i{flex:1;height:4px;border-radius:2px;background:#ddd}
+.prog i.f{background:#333}
+</style>
+</helmet>
+<div style="width:2660px;height:1040px;box-sizing:border-box;padding:40px 60px;background:#f5f5f5;display:flex;flex-direction:column;gap:20px">
+<h1 style="margin:0;font-size:28px">진입 + A. 약속 만들기 /new (주도자)</h1>
+<div style="display:flex;gap:40px;align-items:flex-start">
+
+<div>
+<p class="id">L0 <span>랜딩 /</span></p>
+<div class="ph">
+<div class="box" style="height:180px">[뱁새 일러스트]</div>
+<p class="h">올해 못 본 친구, 이어갈래?<br>70%만 답하면 날짜 나와</p>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div class="card" style="display:flex;gap:12px;align-items:center"><div class="box" style="width:44px;height:44px;padding:0">1</div><p class="p">링크 만들어 단톡방에 공유</p></div>
+<div class="card" style="display:flex;gap:12px;align-items:center"><div class="box" style="width:44px;height:44px;padding:0">2</div><p class="p">친구들은 달력 캡처만 올리기</p></div>
+<div class="card" style="display:flex;gap:12px;align-items:center"><div class="box" style="width:44px;height:44px;padding:0">3</div><p class="p">70% 모이면 Top3 공개</p></div>
+</div>
+<div class="bot"><a href="#" style="text-decoration:none"><span class="btn" style="display:flex;align-items:center;justify-content:center">약속 만들기</span></a></div>
+</div>
+</div>
+
+<div>
+<p class="id">A1 <span>기본 정보</span></p>
+<div class="ph">
+<div class="prog"><i class="f"></i><i></i><i></i><i></i></div>
+<p class="h">어떤 약속이야?</p>
+<div><label class="lab" for="a1n">약속 이름</label><input id="a1n" class="in" value="연말 방어회 모임"><p class="c" style="text-align:right;margin-top:4px">9/20</p></div>
+<div><label class="lab" for="a1m">내 이름</label><input id="a1m" class="in" value="민서"></div>
+<div><span class="lab">인원 수 (2~15명)</span>
+<div style="display:flex;align-items:center;gap:16px"><button class="btn2" style="width:48px" aria-label="인원 줄이기">−</button><span style="font-size:22px;font-weight:700;min-width:40px;text-align:center">6</span><button class="btn2" style="width:48px" aria-label="인원 늘리기">+</button><span class="p">명</span></div></div>
+<div class="card" style="background:#f3f3f3;border-color:#eee"><p class="c">6명 중 5명(70%)이 답하면 결과가 나와. 인원을 바꾸면 숫자도 바뀌어.</p></div>
+<div class="card" style="border-style:dashed"><p class="c">빈칸으로 다음을 누르면 필드 아래에 안내 문구: "약속 이름을 적어줘"</p></div>
+<div class="bot"><button class="btn">다음</button></div>
+</div>
+</div>
+
+<div>
+<p class="id">A2 <span>응답 설정</span></p>
+<div class="ph">
+<div class="prog"><i class="f"></i><i class="f"></i><i></i><i></i></div>
+<p class="h">언제쯤 만날까?</p>
+<p class="c">날짜 범위를 골라줘 (최대 5주)</p>
+<div class="card" style="padding:10px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><button class="tbtn" aria-label="이전 달">‹</button><b style="font-size:15px">2026년 12월</b><button class="tbtn" aria-label="다음 달">›</button></div>
+<div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;text-align:center;font-size:11px;color:#555;margin-bottom:4px"><span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span></div>
+<div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px">
+<sc-for list="{{cal}}" as="d" hint-placeholder-count="35"><div style="{{d.s}}">{{d.t}}</div></sc-for>
+</div>
+</div>
+<p class="c">선택: 12월 1일 ~ 12월 31일 (5주) · 5주를 넘기면 "최대 5주까지 고를 수 있어"</p>
+<div><span class="lab">시간대</span>
+<div style="display:flex;gap:8px"><button class="chip">점심</button><button class="chip on">저녁</button><button class="chip">상관없음</button></div></div>
+<div class="bot"><button class="btn">다음</button></div>
+</div>
+</div>
+
+<div>
+<p class="id">A3 <span>마감·알림</span></p>
+<div class="ph">
+<div class="prog"><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div>
+<p class="h">언제까지 답 받을까?</p>
+<div><label class="lab" for="a3d">응답 마감일</label><input id="a3d" class="in" value="12월 10일 (목)"></div>
+<div style="display:flex;justify-content:space-between;align-items:center"><span class="p">마감 시각도 정할래</span><span style="width:44px;height:26px;border-radius:13px;background:#ccc;display:inline-block;position:relative"><span style="position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff"></span></span></div>
+<p class="c">안 정하면 마감일 23:59에 마감돼</p>
+<div class="card">
+<p class="p" style="font-weight:600">결과 나오면 알려줄게</p>
+<p class="c" style="margin:4px 0 10px">70% 모였을 때 · 전원 응답 · 마감 때</p>
+<div style="display:flex;gap:8px;margin-bottom:10px"><button class="chip on" style="flex:1">이메일로 받기</button><button class="chip" style="flex:1">웹 푸시로 받기</button></div>
+<label class="lab" for="a3e">이메일</label><input id="a3e" class="in" placeholder="name@example.com">
+<p class="c" style="margin-top:6px">웹 푸시 → B5-T 튜토리얼로 이동 후 돌아옴</p>
+</div>
+<div class="bot"><button class="btn">초대장 만들기</button></div>
+</div>
+</div>
+
+<div>
+<p class="id">A3-M <span>알림 미설정 확인 모달</span></p>
+<div class="ph" style="background:#fff">
+<div class="prog"><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div>
+<p class="h">언제까지 답 받을까?</p>
+<div class="box" style="height:300px">A3 화면 (알림 둘 다 미설정)</div>
+<div style="position:absolute;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;padding:24px">
+<div style="background:#fff;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:14px;width:100%;box-sizing:border-box">
+<p class="p" style="font-weight:600;font-size:17px">결과 나와도 알림을 못 받을 수 있어. 괜찮아?</p>
+<p class="c">관리 링크를 잃어버리면 확정을 못 할 수도 있어</p>
+<div style="display:flex;gap:8px"><button class="btn2" style="flex:1">알림 설정할래</button><button class="btn" style="flex:1;height:48px">괜찮아, 만들기</button></div>
+</div>
+</div>
+</div>
+</div>
+
+<div>
+<p class="id">A4 <span>생성 완료·공유</span></p>
+<div class="ph">
+<div class="prog"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></div>
+<p class="h">초대장 완성! 단톡방에 뿌려줘</p>
+<div class="card" style="padding:0;overflow:hidden">
+<div class="box" style="height:150px;border-radius:0;border:0;border-bottom:1px dashed #888">[OG-1 초대 카드 미리보기 · 뱁새]</div>
+<div style="padding:12px"><p class="p" style="font-weight:600">연말 방어회 모임</p><p class="c">우리 이어갈래? 되는 날 알려줘 · 0/6 응답</p></div>
+</div>
+<div style="display:flex;gap:8px"><button class="btn" style="flex:1;height:48px">카톡으로 공유</button><button class="btn2" style="flex:1">링크 복사</button></div>
+<div class="card" style="border-color:#333">
+<p class="p" style="font-weight:600">관리 링크</p>
+<p class="c" style="margin:4px 0 10px">이 링크로만 확정할 수 있어. 꼭 저장해둬</p>
+<div style="display:flex;gap:8px;align-items:center"><span class="in" style="display:flex;align-items:center;color:#555;font-size:13px;flex:1">ieo.app/p/a1b2?k=••••</span><button class="btn2" style="width:72px">복사</button></div>
+</div>
+<p class="c">복사 시 토스트 "복사했어 콕"</p>
+<div class="bot"><button class="tbtn">내 일정도 넣기 → B2</button></div>
+</div>
+</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":2660,"height":1040}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const base = 'height:34px;display:flex;align-items:center;justify-content:center;font-size:12px;border-radius:8px;';
+    const cal = [];
+    for (let i = 0; i < 2; i++) cal.push({ t: '', s: base });
+    for (let d = 1; d <= 31; d++) {
+      const end = d === 1 || d === 31;
+      cal.push({ t: String(d), s: base + (end ? 'background:#333;color:#fff;font-weight:700;' : 'background:#e4e4e4;color:#222;') });
+    }
+    while (cal.length < 35) cal.push({ t: '', s: base });
+    return { cal };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>응답하기 진입과 캡처</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;font-family:system-ui,-apple-system,'Apple SD Gothic Neo',sans-serif;color:#222}
+.ph{width:390px;height:844px;box-sizing:border-box;border:2px solid #333;border-radius:32px;background:#fff;padding:52px 20px 24px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.id{font-size:14px;font-weight:700;margin:0 0 10px}
+.id span{font-weight:400;color:#555}
+.h{font-size:22px;font-weight:700;margin:0;line-height:1.35}
+.p{font-size:15px;margin:0;color:#444;line-height:1.5}
+.c{font-size:12px;margin:0;color:#555;line-height:1.5}
+.box{background:#eee;border:1px dashed #888;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#444;text-align:center;padding:8px}
+.btn{width:100%;height:52px;border-radius:12px;background:#333;color:#fff;border:0;font-size:16px;font-weight:600;font-family:inherit}
+.btn2{width:100%;height:48px;border-radius:12px;background:#fff;color:#333;border:1.5px solid #333;font-size:15px;font-family:inherit}
+.tbtn{background:none;border:0;color:#333;text-decoration:underline;font-size:14px;font-family:inherit;padding:8px}
+.chip{border:1.5px solid #999;border-radius:20px;padding:8px 16px;font-size:14px;background:#fff;color:#333;font-family:inherit}
+.in{height:48px;border:1.5px solid #bbb;border-radius:10px;padding:0 12px;font-size:15px;width:100%;box-sizing:border-box;font-family:inherit}
+.lab{display:block;font-size:13px;color:#555;margin:0 0 6px}
+.card{border:1.5px solid #ccc;border-radius:14px;padding:14px}
+.bot{margin-top:auto;display:flex;flex-direction:column;gap:8px}
+.av{width:36px;height:36px;border-radius:50%;background:#bbb;display:inline-block}
+.av0{width:36px;height:36px;border-radius:50%;border:2px dashed #999;box-sizing:border-box;display:inline-block}
+</style>
+</helmet>
+<div style="width:2230px;height:1040px;box-sizing:border-box;padding:40px 60px;background:#f5f5f5;display:flex;flex-direction:column;gap:20px">
+<h1 style="margin:0;font-size:28px">B. 응답하기 /p/{id} ① 진입·이름·캡처</h1>
+<div style="display:flex;gap:40px;align-items:flex-start">
+
+<div>
+<p class="id">B1 <span>초대 랜딩</span></p>
+<div class="ph">
+<div class="box" style="height:150px">[뱁새 + 초대장 일러스트]</div>
+<p class="h">민서가 연말 방어회 모임에<br>초대했어</p>
+<div class="card" style="display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;justify-content:space-between"><span class="c">날짜 범위</span><span class="p">12월 1일 ~ 31일</span></div>
+<div style="display:flex;justify-content:space-between"><span class="c">시간대</span><span class="p">저녁</span></div>
+<div style="display:flex;justify-content:space-between"><span class="c">응답 마감</span><span class="p">12월 10일 (목)</span></div>
+</div>
+<div class="card">
+<p class="p" style="font-weight:600;margin-bottom:10px">6명 중 2명 응답</p>
+<div style="display:flex;gap:8px"><span class="av"></span><span class="av"></span><span class="av0"></span><span class="av0"></span><span class="av0"></span><span class="av0"></span></div>
+</div>
+<p class="c">방문자 분기: 새 참여자 → B1 · 이미 응답 / 주도자 → C · 잠정 결과 이후 새 참여자 → B1-L</p>
+<div class="bot"><button class="btn">내 일정 넣기</button></div>
+</div>
+</div>
+
+<div>
+<p class="id">B1-L <span>늦은 응답 (잠정 결과 이후)</span></p>
+<div class="ph">
+<p class="h">벌써 날짜 후보가 나왔어!<br>되는 날만 체크해줘</p>
+<p class="c">여러 개 골라도 돼 · 순위는 실시간으로 바뀌어</p>
+<sc-for list="{{top}}" as="t" hint-placeholder-count="3">
+<label class="card" style="display:flex;align-items:center;gap:12px;cursor:pointer">
+<input type="checkbox" style="width:22px;height:22px">
+<span style="background:#333;color:#fff;border-radius:8px;padding:4px 8px;font-size:12px;font-weight:700">{{t.rank}}</span>
+<span style="flex:1"><span class="p" style="display:block;font-weight:600">{{t.date}}</span><span class="c">{{t.desc}}</span></span>
+</label>
+</sc-for>
+<p class="c">Top3 밖 날짜는 안 되는 걸로 넣을게</p>
+<button class="tbtn" style="align-self:flex-start">이 중에 되는 날이 없어요 → B3</button>
+<div class="bot"><button class="btn">제출 → B2 → B6</button></div>
+</div>
+</div>
+
+<div>
+<p class="id">B2 <span>이름 입력 (같은 이름 있을 때)</span></p>
+<div class="ph">
+<p class="h">이름이 뭐야?</p>
+<div><label class="lab" for="b2n">이름</label><input id="b2n" class="in" value="지안"></div>
+<p class="c">단톡방에서 부르는 이름이면 돼</p>
+<div class="bot"><button class="btn">다음</button></div>
+<div style="position:absolute;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;padding:24px">
+<div style="background:#fff;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:14px;width:100%;box-sizing:border-box">
+<p class="p" style="font-weight:600;font-size:17px">'지안' 이름으로 응답이 이미 있어</p>
+<p class="c">같은 사람이면 이전 응답을 불러와서 고칠 수 있어</p>
+<button class="btn" style="height:48px">내가 맞아, 수정할래 → B5</button>
+<button class="btn2">다른 이름 쓸래</button>
+</div>
+</div>
+</div>
+</div>
+
+<div>
+<p class="id">B3 <span>캡처 업로드</span></p>
+<div class="ph">
+<p class="h">월간 달력 캡처<br>1~3장 올려줘</p>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">
+<div class="box" style="height:110px;position:relative">12월 캡처<button aria-label="삭제" style="position:absolute;top:4px;right:4px;width:24px;height:24px;border-radius:50%;border:0;background:#333;color:#fff;font-size:12px">×</button></div>
+<button class="box" style="height:110px;font-family:inherit;cursor:pointer">+ 추가</button>
+<button class="box" style="height:110px;font-family:inherit;cursor:pointer">+ 추가</button>
+</div>
+<div class="box" style="height:170px">[예시: 월간 캘린더 캡처 화면]</div>
+<div class="card" style="border-color:#333;display:flex;gap:10px;align-items:flex-start">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+<p class="c" style="color:#333">캡처는 분석 후 바로 지워. 읽은 일정 내용은 너만 볼 수 있어</p>
+</div>
+<div class="bot"><button class="btn">분석하기 → B4</button><button class="tbtn">캘린더 안 써요 → B5-M</button></div>
+</div>
+</div>
+
+<div>
+<p class="id">B4 <span>분석 중</span></p>
+<div class="ph">
+<div class="box" style="height:260px;margin-top:60px">[뱁새가 달력을 콕콕 쪼는 로딩 애니메이션]</div>
+<p class="h" style="text-align:center">뱁새가 열심히 쪼는 중…</p>
+<p class="c" style="text-align:center">최대 10초 정도 걸려</p>
+<div style="height:6px;border-radius:3px;background:#ddd"><div style="width:60%;height:6px;border-radius:3px;background:#333"></div></div>
+<div class="card" style="border-style:dashed">
+<p class="p" style="font-weight:600;margin-bottom:6px">월 인식 실패 시 (인라인)</p>
+<p class="c" style="margin-bottom:8px">이거 몇 월이야?</p>
+<div style="display:flex;gap:8px"><button class="chip">11월</button><button class="chip" style="background:#333;color:#fff;border-color:#333">12월</button><button class="chip">1월</button></div>
+</div>
+<p class="c">성공 → B5 · 전체 실패 → "다시 해볼게" 1회 재시도 → B5-M</p>
+</div>
+</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":2230,"height":1040}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      top: [
+        { rank: '1위', date: '12월 20일 (일)', desc: '가능 5명' },
+        { rank: '2위', date: '12월 19일 (토)', desc: '가능 4명 · 부분 1명 (19시 이후)' },
+        { rank: '3위', date: '12월 26일 (토)', desc: '가능 3명 · 부분 2명' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
