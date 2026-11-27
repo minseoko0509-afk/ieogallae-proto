@@ -26,10 +26,10 @@ export default function D2() {
   return (
     <BottomSheet onClose={() => go('D1')}>
       <p className="t-title" style={{ fontSize: 20 }}>{nav?.auto ? '바뀐 거 친구들한테 알려줘' : '친구들한테 알려줘'}</p>
-      <label htmlFor="d2m" className="t-caption">공유 문구 (수정 가능)</label>
+      <label htmlFor="d2m" className="t-caption" style={{ color: 'var(--c-deep)', marginBottom: -8 }}>공유 메시지 (수정 가능)</label>
       <textarea id="d2m" className="textarea" value={text} onChange={(e) => setText(e.target.value)} />
       <div className="row" style={{ flexWrap: 'nowrap' }}>
-        <Button variant="primary" style={{ flex: 1, height: 48 }} onClick={() => show('카톡으로 공유했어 (데모)')}>카톡 공유</Button>
+        <Button variant="primary" style={{ flex: 1, height: 48, boxShadow: 'var(--shadow-px-s)' }} onClick={() => show('카톡으로 공유했어 (데모)')}>카톡 공유</Button>
         <Button style={{ flex: 1, height: 48 }} onClick={() => copyText(`${text}\n${link}`).then(() => show('복사했어 콕'))}>링크 복사</Button>
       </div>
       <p className="t-caption">링크: {link}</p>

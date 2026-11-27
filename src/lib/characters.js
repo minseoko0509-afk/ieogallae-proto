@@ -1,6 +1,6 @@
-// 캐릭터 이미지 (public/chars). 뱁새 = 앱 마스코트, 동물 = 친구들 아바타.
+// 캐릭터 이미지 (public/chars, 민서가 준 픽셀 캐릭터). 삐루 = 앱 마스코트, 동물 = 친구들 아바타.
 
-// 뱁새 표정: 화면 내용에 맞춰 고른다
+// 삐루 표정: 화면 내용에 맞춰 고른다
 export const BIRD = {
   neutral: '멀뚱',
   walk: '총총',
@@ -18,9 +18,10 @@ export const BIRD = {
 export const birdSrc = (mood) => `/chars/bird-${mood}.webp`
 
 // 친구 동물: 데모 멤버는 고정, 새 이름은 글자로 골라 늘 같은 동물이 나온다
-export const ANIMALS = ['cat', 'rabbit', 'hamster', 'penguin', 'seal', 'duck', 'sheep']
-export const ANIMAL_KO = { cat: '고양이', rabbit: '토끼', hamster: '햄스터', penguin: '펭귄', seal: '물범', duck: '오리', sheep: '양' }
-const FIXED = { 민서: 'cat', 지안: 'rabbit', 서윤: 'hamster', 하린: 'penguin', 지운: 'seal', 수빈: 'duck' }
+export const ANIMALS = ['cat', 'rabbit', 'penguin', 'seal', 'duck', 'sheep', 'sparrow']
+export const ANIMAL_KO = { cat: '고양이', rabbit: '토끼', penguin: '펭귄', seal: '물범', duck: '오리', sheep: '양', sparrow: '하얀 새', 'bird-neutral': '삐루' }
+// 주도자 민서는 삐루, 나머지는 Stitch 와이어프레임의 친구 배치를 따른다
+const FIXED = { 민서: 'bird-neutral', 지안: 'cat', 서윤: 'duck', 하린: 'rabbit', 지운: 'penguin', 수빈: 'seal' }
 
 export function animalOf(name = '') {
   if (FIXED[name]) return FIXED[name]

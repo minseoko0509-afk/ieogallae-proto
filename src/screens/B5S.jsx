@@ -28,23 +28,23 @@ export default function B5S() {
 
   const opt = (val, text) => (
     <label className={`card choice ${s === val ? 'is-on' : ''}`}>
-      <input type="radio" name="b5s" checked={s === val} onChange={() => setS(val)} />
       {text}
+      <input type="radio" name="b5s" checked={s === val} onChange={() => setS(val)} />
     </label>
   )
 
   return (
     <BottomSheet onClose={() => go(back)}>
       <p className="t-title" style={{ fontSize: 20 }}>{formatDateKo(date)}</p>
-      <div className="card note">
+      <div className="card" style={{ padding: '12px 14px' }}>
         <div className="row" style={{ justifyContent: 'space-between' }}>
           <span className="t-caption">읽힌 일정</span>
           <span className="t-caption row" style={{ gap: 4 }}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>
             너만 보여
           </span>
         </div>
-        <p className="t-body" style={{ marginTop: 4 }}>
+        <p className="t-body" style={{ marginTop: 4, fontWeight: 700 }}>
           {cur.ev || (cur.s === 'tbd' ? '아직 일정이 안 나왔어' : '읽힌 일정 없음')}
         </p>
       </div>
@@ -55,7 +55,7 @@ export default function B5S() {
       </div>
       {s === 'part' && (
         <div>
-          <label className="field-label" htmlFor="b5s-from">되는 시간 (시 단위)</label>
+          <label className="field-label" htmlFor="b5s-from">되는 시간</label>
           <select id="b5s-from" className="input" value={from} onChange={(e) => setFrom(Number(e.target.value))}>
             {HOURS.map((h) => <option key={h} value={h}>{h}시 이후</option>)}
           </select>

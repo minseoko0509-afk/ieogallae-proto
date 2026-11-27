@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { Screen, Button, Illust } from '../components/ui.jsx'
+import { Screen, Button, TopBar } from '../components/ui.jsx'
 import { useGo } from '../router/useGo.js'
+import { InfoIcon } from './A1.jsx'
 
 const STEPS = {
   iOS: [
@@ -25,18 +26,20 @@ export default function B5T() {
 
   return (
     <Screen>
+      <TopBar />
       <div className="seg" role="tablist">
         {Object.keys(STEPS).map((k) => (
           <button key={k} type="button" role="tab" aria-selected={os === k} className={os === k ? 'is-on' : ''} onClick={() => setOs(k)}>{k}</button>
         ))}
       </div>
-      <div className="card note">
+      <div className="card note" style={{ padding: '10px 14px' }}>
+        <InfoIcon />
         <p className="t-caption" style={{ color: 'var(--c-ink)' }}>카톡 안에서는 푸시가 안 돼. 아래 순서대로 해줘</p>
       </div>
       {STEPS[os].map(([n, t]) => (
-        <div key={n} className="card row" style={{ gap: 12, flexWrap: 'nowrap' }}>
-          <Illust label="스크린샷" h={90} w={70} style={{ flex: 'none' }} />
-          <div><p className="t-body" style={{ fontWeight: 600 }}>{n}</p><p className="t-caption">{t}</p></div>
+        <div key={n} className="card row" style={{ gap: 12, flexWrap: 'nowrap', padding: 12 }}>
+          <span className="shot">[스크린샷]</span>
+          <div><p className="t-body" style={{ fontWeight: 700 }}>{n}</p><p className="t-caption" style={{ color: 'var(--c-deep)' }}>{t}</p></div>
         </div>
       ))}
       <div className="bottom">

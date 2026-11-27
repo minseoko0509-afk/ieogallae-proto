@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Screen, Button, Modal } from '../components/ui.jsx'
+import { Screen, Button, Modal, TopBar } from '../components/ui.jsx'
 import { useGo } from '../router/useGo.js'
 import { usePlan, useSubmitResponse } from '../lib/plan.js'
 import { useStore, responseDraft } from '../lib/drafts.js'
@@ -36,24 +36,25 @@ export default function B2() {
 
   return (
     <Screen>
-      <p className="t-title">친구들이 알아볼<br />이름을 알려줘</p>
+      <TopBar />
+      <p className="t-title">이름이 뭐야?</p>
       <div>
         <label className="field-label" htmlFor="b2n">이름</label>
         <input id="b2n" className="input" maxLength={20} value={draft.name} placeholder="예: 지운"
           onChange={(e) => set({ name: e.target.value })} aria-invalid={tried && !name} />
         {tried && !name && <p className="err">이름을 적어줘</p>}
       </div>
-      <p className="t-caption">가입 없이 이 이름으로 응답이 저장돼</p>
+      <p className="t-caption" style={{ marginTop: -10 }}>단톡방에서 부르는 이름이면 돼</p>
       <div className="bottom"><Button variant="primary" onClick={next}>다음</Button></div>
       {dup && (
         <Modal
-          title={`'${name}'(으)로 이미 답한 사람이 있어`}
+          title={`'${name}' 이름으로 응답이 이미 있어`}
           actions={[
             { label: '다른 이름 쓸래', variant: 'secondary', onClick: () => { setDup(false); set({ name: '' }) } },
-            { label: '내가 맞아, 수정할래', variant: 'primary', onClick: mine },
+            { label: '나 맞아, 수정할래', variant: 'primary', onClick: mine },
           ]}
         >
-          <p className="t-caption">네가 맞으면 전에 넣은 응답을 고칠 수 있어</p>
+          <p className="t-caption">같은 사람이면 이전 응답을 불러와서 고칠 수 있어</p>
         </Modal>
       )}
     </Screen>

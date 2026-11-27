@@ -1,4 +1,5 @@
 // 공통 로우파이 컴포넌트. 스타일은 src/styles/base.css 클래스를 쓴다.
+import { useNavigate } from 'react-router-dom'
 import { BIRD, birdSrc, animalSrc, animalOf, ANIMAL_KO } from '../lib/characters.js'
 
 // 화면 본문 컨테이너 (스크롤 영역). 모든 화면의 최상위에 둔다.
@@ -22,6 +23,28 @@ export function Button({ variant = 'secondary', className = '', ...props }) {
 
 export function Chip({ on, className = '', ...props }) {
   return <button type="button" className={`chip ${on ? 'is-on' : ''} ${className}`} {...props} />
+}
+
+// 상단 바: 왼쪽은 화면 ID 라벨 자리, 뒤로 버튼(onBack 없으면 브라우저 뒤로), 가운데 제목, 오른쪽 meta
+export function TopBar({ back = true, onBack, title, meta, children }) {
+  const navigate = useNavigate()
+  return (
+    <div className="topbar">
+      {back ? (
+        <button type="button" className="topbar__back" aria-label="뒤로 가기" onClick={onBack ?? (() => navigate(-1))}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="square" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6" /></svg>
+        </button>
+      ) : <span style={{ width: 4 }} />}
+      <span className="topbar__title">{title}</span>
+      {meta != null ? <span className="topbar__meta">{meta}</span> : <span style={{ width: 44 }} />}
+      {children}
+    </div>
+  )
+}
+
+// 픽셀 로고 (public/logo.svg, Stitch L0에서 추출)
+export function Logo({ w = 144, style }) {
+  return <img className="pxlogo" src="/logo.svg" alt="이어갈래?" width={w} height={w / 4} style={style} draggable="false" />
 }
 
 // A 흐름 상단 4단계 진행 바
@@ -68,11 +91,11 @@ export function Modal({ title, children, actions = [] }) {
   )
 }
 
-// 뱁새 일러스트. mood는 src/lib/characters.js BIRD 키 (예: <Bird mood="hello" size={150} />)
+// 삐루(마스코트) 일러스트. mood는 src/lib/characters.js BIRD 키 (예: <Bird mood="hello" size={150} />)
 export function Bird({ mood = 'neutral', size = 140, round, className = '', style }) {
   return (
     <div className={`char ${round ? 'char--round' : ''} ${className}`} style={{ width: size, height: size, ...style }}>
-      <img src={birdSrc(mood)} alt={`뱁새 ${BIRD[mood] ?? ''}`} width={size} height={size} draggable="false" />
+      <img src={birdSrc(mood)} alt={`삐루 ${BIRD[mood] ?? ''}`} width={size} height={size} draggable="false" />
     </div>
   )
 }

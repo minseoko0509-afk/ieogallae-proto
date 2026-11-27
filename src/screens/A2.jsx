@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Screen, Button, Chip, Steps } from '../components/ui.jsx'
+import { Screen, Button, Chip, Steps, TopBar } from '../components/ui.jsx'
 import MonthGrid from '../components/MonthGrid.jsx'
 import { useGo } from '../router/useGo.js'
 import { useStore, planDraft } from '../lib/drafts.js'
@@ -39,20 +39,17 @@ export default function A2() {
 
   return (
     <Screen>
+      <TopBar meta="2 / 4" />
       <Steps current={2} />
       <p className="t-title">언제쯤 만날까?</p>
-      <p className="t-caption">날짜 범위를 골라줘 (최대 5주). 시작일과 끝날을 차례로 눌러</p>
+      <p className="t-caption" style={{ marginTop: -10 }}>날짜 범위를 골라줘 (최대 5주). 시작일과 끝날을 차례로 눌러</p>
       <div>
-        <div className="row" style={{ justifyContent: 'space-between', flexWrap: 'nowrap' }}>
-          <Button variant="text" aria-label="이전 달" onClick={() => move(-1)}>‹</Button>
-          <b>{ym.y}년 {ym.m}월</b>
-          <Button variant="text" aria-label="다음 달" onClick={() => move(1)}>›</Button>
-        </div>
         <MonthGrid
+          onPrev={() => move(-1)}
+          onNext={() => move(1)}
           key={`${ym.y}-${ym.m}`}
           year={ym.y}
           month={ym.m}
-          title={false}
           renderCell={(k) => ({
             className: k === d.start || k === d.end ? 'mcell--edge' : k > d.start && k < d.end ? 'mcell--in' : '',
           })}
@@ -65,7 +62,7 @@ export default function A2() {
       {err && <p className="err" role="alert">{err}</p>}
       <div>
         <span className="field-label">시간대</span>
-        <div className="row">
+        <div className="row" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
           {SLOTS.map((s) => <Chip key={s} on={d.slot === s} onClick={() => set({ slot: s })}>{s}</Chip>)}
         </div>
       </div>

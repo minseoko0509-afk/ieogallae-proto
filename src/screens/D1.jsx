@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { Screen, Button, Bird } from '../components/ui.jsx'
+import { Screen, Button, Bird, Logo } from '../components/ui.jsx'
 import { useGo } from '../router/useGo.js'
 import { usePlan, usePlanNav, shareUrl } from '../lib/plan.js'
 import { tallyDate, formatDateKo } from '../lib/ranking.js'
@@ -29,24 +29,31 @@ export default function D1() {
 
   return (
     <Screen>
+      <div className="topbar topbar--plain"><Logo /></div>
       <div className="card confirm-card confirm-card--party">
-        <div className="confirm-card__art"><Bird mood="jump" size={140} round /></div>
+        <div className="frame confirm-card__art" style={{ alignItems: 'center' }}>
+          <img src="/chars/seal.webp" alt="물범 친구" width="88" height="88" style={{ imageRendering: 'pixelated' }} />
+          <Bird mood="jump" size={104} />
+          <img src="/chars/sheep.webp" alt="양 친구" width="88" height="88" style={{ imageRendering: 'pixelated' }} />
+        </div>
         <div className="confirm-card__body">
           <p className="t-title">{EVENT.title} <em>확정!</em></p>
-          <p className="t-body">{formatDateKo(c.date)} {c.time}</p>
-          <p className="t-caption">참석 {attend} / {N} · 우리 계속 이어가자</p>
+          <p className="t-body" style={{ fontWeight: 700 }}>{formatDateKo(c.date)} {c.time}</p>
+          <p className="t-caption" style={{ color: 'var(--c-deep)' }}>참석 {attend} / {N} · 우리 계속 이어가자</p>
         </div>
       </div>
       <div className="row" style={{ flexWrap: 'nowrap' }}>
-        <Button style={{ flex: 1 }} onClick={() => window.open(googleCalendarUrl(event), '_blank', 'noopener')}>
+        <Button style={{ flex: 1, height: 44, fontSize: 13 }} onClick={() => window.open(googleCalendarUrl(event), '_blank', 'noopener')}>
           구글 캘린더에 추가
         </Button>
-        <Button style={{ flex: 1 }} onClick={() => downloadIcs(event, `ieogallae-${c.date.replaceAll('-', '')}.ics`)}>
+        <Button style={{ flex: 1, height: 44, fontSize: 13 }} onClick={() => downloadIcs(event, `ieogallae-${c.date.replaceAll('-', '')}.ics`)}>
           폰 캘린더 (.ics)
         </Button>
       </div>
       {isHost && (
-        <div className="row" style={{ flexWrap: 'nowrap' }}>
+        <div className="host-box">
+          <p className="t-caption" style={{ color: 'var(--c-deep)' }}>주도자에게만</p>
+          <div className="row" style={{ flexWrap: 'nowrap' }}>
           <Button style={{ flex: 1, height: 44 }} onClick={() => go('C3')}>확정 수정</Button>
           <Button
             style={{ flex: 1, height: 44 }}
@@ -57,6 +64,7 @@ export default function D1() {
           >
             확정 취소
           </Button>
+          </div>
         </div>
       )}
       <div className="bottom">

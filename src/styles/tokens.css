@@ -1,61 +1,68 @@
-/* 디자인 토큰: 핑크·라벤더 팔레트
- * 주요 CTA = 마젠타, 보조 액션 = 보라, 하이라이트 = 노랑, 확정·강조 카드 = 진보라.
- * 예전 그레이스케일 이름(--c-gray-*, --c-ink)은 화면 코드 호환용으로 새 팔레트에 다시 묶어 둔다.
+/* 디자인 토큰: "이어갈래? Sticker Brand System" (Stitch 와이어프레임, low_fi_wireframe_system.md)
+ * 라일락 바탕 + 흰/노랑 스티커 카드, 진보라 1.5px 외곽선, 각진 모서리, 픽셀 그림자.
+ * 주요 CTA = 보라, 강조 = 핑크, 콜아웃·캐릭터 액자 = 노랑.
+ * 예전 이름(--c-gray-*, --c-ink, --c-magenta 등)은 화면 코드 호환용으로 새 팔레트에 묶어 둔다.
  */
 :root {
   /* 팔레트 */
   --c-white: #ffffff;
-  --c-pink: #f2369b;        /* 로고, 강조 */
-  --c-magenta: #dd2a8a;     /* 주요 CTA */
-  --c-magenta-dk: #c21f78;  /* 눌림 */
-  --c-pink-1: #fff1f8;      /* 아주 옅은 분홍 면 */
-  --c-pink-2: #fde2f0;      /* 보조 버튼 면, 일러스트 박스 */
-  --c-pink-3: #f9bddc;      /* 분홍 선 */
-  --c-lav-0: #fbf8ff;       /* 화면 바탕 */
-  --c-lav-1: #f3edff;       /* 라벤더 면 */
-  --c-lav-2: #e3d8fb;       /* 라벤더 선 */
-  --c-lav-3: #c5b3f2;       /* 진한 라벤더 선 */
-  --c-purple: #7b57e0;      /* 보조 액션, 선택 상태 */
-  --c-purple-dk: #3a2368;   /* 본문 글씨, 확정 카드 */
-  --c-purple-sub: #8b7aad;  /* 보조 글씨 */
-  --c-yellow: #ffe57a;      /* 하이라이트 칩 */
-  --c-yellow-1: #fff7d1;    /* 안내 박스 면 */
+  --c-primary: #7b5cd6;     /* 주요 CTA, 선택 상태 */
+  --c-deep: #3b2a6b;        /* 글씨, 외곽선, 강조 배지 */
+  --c-surface: #f4eeff;     /* 라일락 바탕 */
+  --c-muted: #6b5b95;       /* 보조 글씨 */
+  --c-pink: #ff5fa2;        /* 강조, 순위, 진행 */
+  --c-yellow: #ffe27a;      /* 콜아웃, 캐릭터 액자 */
+  --c-lilac-2: #e6dcff;     /* 진한 라일락 면 (비활성, 부분) */
+  --c-lilac-3: #c9b8f5;     /* 오버레이 뒤 화면 */
+  --c-yellow-1: #fff4c2;
 
   /* 예전 이름 (호환) */
-  --c-gray-1: var(--c-lav-1);
-  --c-gray-2: var(--c-lav-2);
-  --c-gray-3: var(--c-purple-sub);
-  --c-ink: var(--c-purple-dk);
+  --c-purple: var(--c-primary);
+  --c-purple-dk: var(--c-deep);
+  --c-purple-sub: var(--c-muted);
+  --c-magenta: var(--c-primary);
+  --c-magenta-dk: #6447bd;
+  --c-pink-1: var(--c-white);
+  --c-pink-2: var(--c-lilac-2);
+  --c-pink-3: var(--c-deep);
+  --c-lav-0: var(--c-surface);
+  --c-lav-1: var(--c-lilac-2);
+  --c-lav-2: var(--c-deep);
+  --c-lav-3: var(--c-muted);
+  --c-gray-1: var(--c-lilac-2);
+  --c-gray-2: var(--c-deep);
+  --c-gray-3: var(--c-muted);
+  --c-ink: var(--c-deep);
 
   /* 역할 */
-  --c-bg: var(--c-lav-0);
-  --c-text: var(--c-purple-dk);
-  --c-text-sub: var(--c-purple-sub);
-  --c-line: var(--c-lav-2);
-  --c-surface: var(--c-lav-1);
-  --c-primary: var(--c-magenta);
-  --c-accent: var(--c-purple);
-  --c-dim: rgba(58, 35, 104, 0.45); /* 바텀시트·모달 배경 */
-  --shadow-card: 0 2px 10px rgba(123, 87, 224, 0.08);
-  --shadow-btn: 0 4px 14px rgba(221, 42, 138, 0.28);
+  --c-bg: var(--c-surface);
+  --c-text: var(--c-deep);
+  --c-text-sub: var(--c-muted);
+  --c-line: var(--c-deep);
+  --c-accent: var(--c-primary);
+  --c-dim: rgba(59, 42, 107, 0.55); /* 바텀시트·모달 스크림 */
+  --line: 1.5px solid var(--c-deep);
+  --shadow-px: 4px 4px 0 var(--c-deep);   /* 픽셀 그림자 */
+  --shadow-px-s: 2px 2px 0 var(--c-deep);
+  --shadow-card: none;
+  --shadow-btn: inset 0 2px 0 rgba(255, 255, 255, 0.28), 4px 4px 0 var(--c-deep);
 
   /* 글자 */
-  --font: 'Pretendard', system-ui, -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
-  --font-logo: 'Jua', 'Pretendard', system-ui, sans-serif;
+  --font: 'Pretendard', 'Noto Sans KR', system-ui, -apple-system, 'Apple SD Gothic Neo', sans-serif;
   --fs-title: 22px;
   --fs-body: 15px;
   --fs-caption: 12px;
-  --lh: 1.5;
+  --lh: 1.47;
 
   /* 크기 */
   --phone-w: 390px;
   --phone-h: 844px;
-  --touch: 44px; /* 최소 터치 영역 */
-  --btn-h: 52px;
+  --touch: 44px;
+  --btn-h: 48px;
   --gutter: 20px;
-  --gap: 14px;
-  --radius-s: 12px;
-  --radius: 16px;
-  --radius-l: 20px;
-  --radius-phone: 36px;
+  --gap: 16px;
+  --radius-s: 0px;
+  --radius: 0px;
+  --radius-l: 0px;
+  --radius-phone: 0px;
 }

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { Screen, Button, Modal } from '../components/ui.jsx'
+import { Screen, Button, Modal, TopBar } from '../components/ui.jsx'
 import { usePlan, usePlanNav } from '../lib/plan.js'
 import { formatDateKo, describeTally } from '../lib/ranking.js'
 
@@ -20,16 +20,19 @@ export default function C3() {
 
   return (
     <Screen>
-      <p className="t-title">어느 날로 확정할까?</p>
+      <TopBar meta="주도자 전용" />
+      <p className="t-title">언제로 확정할까?</p>
       <div className="stack" style={{ gap: 8 }} role="radiogroup" aria-label="확정 날짜">
         {top.map((t) => (
-          <label key={t.date} className={`card choice ${date === t.date ? 'is-on' : ''}`} style={{ padding: 10 }}>
-            <input type="radio" name="c3" checked={date === t.date} onChange={() => setDate(t.date)} />
-            <span className="rk">{t.rank}위</span>
+          <label key={t.date} className={`card choice card--shadow ${date === t.date ? 'is-on' : ''}`} style={{ padding: '12px 14px', borderWidth: 2, boxShadow: 'var(--shadow-px-s)' }}>
             <span style={{ flex: 1 }}>
-              <span className="t-body" style={{ display: 'block', fontWeight: 600 }}>{formatDateKo(t.date)}</span>
-              <span className="t-caption">{describeTally(t)}</span>
+              <span className="row" style={{ gap: 8 }}>
+                <span className={`rk ${t.rank === 1 ? 'rk--1' : ''}`}>{t.rank === 1 ? '♛ ' : ''}{t.rank}위</span>
+                <span className="t-body" style={{ fontWeight: 700 }}>{formatDateKo(t.date)}</span>
+              </span>
+              <span className="t-caption" style={{ display: 'block', marginTop: 6, color: 'var(--c-deep)' }}>{describeTally(t, true)}</span>
             </span>
+            <input type="radio" name="c3" checked={date === t.date} onChange={() => setDate(t.date)} />
           </label>
         ))}
         {top.length === 0 && <p className="t-caption">아직 고를 날짜가 없어</p>}

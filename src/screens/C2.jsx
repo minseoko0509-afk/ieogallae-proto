@@ -7,13 +7,10 @@ import { formatDateKo, describeTally } from '../lib/ranking.js'
 
 export function TopList({ top, onPick }) {
   return top.map((t) => (
-    <button key={t.date} type="button" className="card top-item" onClick={() => onPick(t.date)}>
-      <span className="rk">{t.rank}위</span>
-      <span style={{ flex: 1 }}>
-        <span className="t-body" style={{ display: 'block', fontWeight: 600 }}>{formatDateKo(t.date)}</span>
-        <span className="t-caption">{describeTally(t)}</span>
-      </span>
-      <span className="t-caption" aria-hidden="true">›</span>
+    <button key={t.date} type="button" className={`top-item ${t.rank === 1 ? 'is-on' : ''}`} onClick={() => onPick(t.date)}>
+      <span className={`rk ${t.rank === 1 ? 'rk--1' : ''}`}>{t.rank === 1 ? '♛ ' : ''}{t.rank}위</span>
+      <span className="t-body" style={{ flex: 1, fontWeight: 700 }}>{formatDateKo(t.date)}</span>
+      <span className="t-caption" style={{ color: 'var(--c-deep)' }}>{describeTally(t, true)}</span>
     </button>
   ))
 }
@@ -37,7 +34,7 @@ export default function C2() {
         renderCell={(k, d) => {
           const r = rankOf[k]
           return {
-            mark: r ? `${r}위` : null,
+            mark: r ? <span className={`rk-mini ${r === 1 ? 'rk-mini--1' : ''}`}>{r === 1 ? '♛' : ''}{r}위</span> : null,
             className: r ? 'mcell--rank' : DATES.includes(k) ? 'mcell--muted' : 'mcell--out',
             label: `12월 ${d}일${r ? ` ${r}위` : ''}`,
           }
