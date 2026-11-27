@@ -23,7 +23,7 @@ function NotFound({ id }) {
       <div className="phone__body">
         <p className="t-title">없는 화면이야</p>
         <p className="t-caption">"{id}" 화면 ID를 찾을 수 없어.</p>
-        <a href="#/">처음으로</a>
+        <a href="/">처음으로</a>
       </div>
     </PhoneFrame>
   )

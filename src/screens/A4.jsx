@@ -3,6 +3,8 @@ import { useGo } from '../router/useGo.js'
 import { useToast, copyText } from '../components/Toast.jsx'
 import { useStore, planDraft, responseDraft } from '../lib/drafts.js'
 import { useAppState } from '../state/AppState.jsx'
+import { EVENT } from '../state/sampleData.js'
+import { shareUrl } from '../lib/plan.js'
 
 // A4 생성 완료·공유
 export default function A4() {
@@ -10,8 +12,8 @@ export default function A4() {
   const [d] = useStore(planDraft)
   const { actions } = useAppState()
   const [toast, show] = useToast()
-  const link = 'ieo.app/p/a1b2'
-  const admin = `${link}?k=demo-host-token`
+  const link = shareUrl()
+  const admin = `${link}?k=${EVENT.hostToken}`
 
   return (
     <Screen>
@@ -33,13 +35,13 @@ export default function A4() {
         <p className="t-caption" style={{ margin: '4px 0 10px' }}>이 링크로만 확정할 수 있어. 꼭 저장해둬</p>
         <div className="row" style={{ flexWrap: 'nowrap' }}>
           <span className="input" style={{ display: 'flex', alignItems: 'center', fontSize: 13, color: 'var(--c-text-sub)' }}>
-            {link}?k=••••
+            {link.replace(/^https?:\/\//, '')}?k=••••
           </span>
           <Button style={{ width: 72, height: 48, flex: 'none' }} onClick={() => copyText(admin).then(() => show('복사했어 콕'))}>복사</Button>
         </div>
       </div>
       <div className="bottom">
-        <Button variant="text" onClick={() => { actions.setRole?.('host'); responseDraft.set({ name: d.host }); go('B2') }}>
+        <Button variant="text" onClick={() => { actions.setRole('host'); responseDraft.reset(); responseDraft.set({ name: EVENT.host }); go('B2') }}>
           내 일정도 넣기
         </Button>
       </div>

@@ -1,22 +1,21 @@
 import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Screen, Button, Modal } from '../components/ui.jsx'
-import { useGo } from '../router/useGo.js'
-import { usePlan } from '../lib/plan.js'
+import { usePlan, usePlanNav } from '../lib/plan.js'
 import { formatDateKo, describeTally } from '../lib/ranking.js'
 
 // C3 확정 설정 (주도자): Top3 라디오 + 시간 → 확정
 export default function C3() {
-  const go = useGo()
   const { state: nav } = useLocation()
   const { state, actions, top, missing } = usePlan()
   const [date, setDate] = useState(nav?.date ?? state.confirmed?.date ?? top[0]?.date)
   const [time, setTime] = useState(state.confirmed?.time ?? '18:00')
   const [ask, setAsk] = useState(false)
+  const { toConfirm } = usePlanNav()
 
   const doConfirm = () => {
     actions.confirm({ date, time })
-    go('D1', { state: { justChanged: !!state.confirmed } })
+    toConfirm({ state: { justChanged: !!state.confirmed } })
   }
 
   return (

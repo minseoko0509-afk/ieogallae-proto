@@ -1,18 +1,43 @@
-import Placeholder from '../components/Placeholder.jsx'
+import { Screen, Button, Illust } from '../components/ui.jsx'
+import { useGo } from '../router/useGo.js'
+import { usePlan } from '../lib/plan.js'
+import { responseDraft } from '../lib/drafts.js'
+import { formatDateKo } from '../lib/ranking.js'
+import '../styles/screens.css'
 
-// B1 — 플레이스홀더. 실제 화면으로 교체할 때 이 파일만 바꾸면 된다.
-export default function B1() {
+export function PlanInfo({ EVENT }) {
+  const s = EVENT.range.start.split('-').map(Number)
+  const e = EVENT.range.end.split('-').map(Number)
   return (
-    <Placeholder
-      id="B1"
-      notes={[
-    "\"민서가 연말 방어회 모임에 초대했어\"",
-    "날짜 범위/시간대/마감일",
-    "\"6명 중 2명 응답\" + 아바타",
-      ]}
-      next={[
-    { label: "내 일정 넣기", to: "B2" },
-      ]}
-    />
+    <div className="card stack" style={{ gap: 6 }}>
+      <p className="t-body"><b>날짜</b> {s[1]}월 {s[2]}일 ~ {e[1]}월 {e[2]}일</p>
+      <p className="t-body"><b>시간대</b> {EVENT.slot}</p>
+      <p className="t-body"><b>마감</b> {formatDateKo(EVENT.deadline)} {EVENT.deadlineTime}</p>
+    </div>
+  )
+}
+
+// B1 초대 랜딩
+export default function B1() {
+  const go = useGo()
+  const { EVENT, N, count, responded, meName } = usePlan()
+  return (
+    <Screen>
+      <Illust label="뱁새 · 초대장" h={150} />
+      <p className="t-title">{EVENT.host}가 {EVENT.title}에<br />초대했어</p>
+      <PlanInfo EVENT={EVENT} />
+      <div className="stack" style={{ gap: 8 }}>
+        <p className="t-body" style={{ fontWeight: 700 }}>{N}명 중 {count}명 응답</p>
+        <div className="row" style={{ gap: 6 }}>
+          {responded.map((n) => <span key={n} className="avatar" title={n}>{n[0]}</span>)}
+          {Array.from({ length: N - count }, (_, i) => <span key={i} className="avatar avatar--empty" aria-hidden="true" />)}
+        </div>
+      </div>
+      <div className="bottom">
+        <Button variant="primary" onClick={() => { responseDraft.reset(); responseDraft.set({ name: meName ?? '' }); go('B2') }}>
+          내 일정 넣기
+        </Button>
+      </div>
+    </Screen>
   )
 }

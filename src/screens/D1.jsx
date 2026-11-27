@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Screen, Button, Illust } from '../components/ui.jsx'
 import { useGo } from '../router/useGo.js'
-import { usePlan } from '../lib/plan.js'
+import { usePlan, usePlanNav, shareUrl } from '../lib/plan.js'
 import { tallyDate, formatDateKo } from '../lib/ranking.js'
 import { googleCalendarUrl, downloadIcs } from '../lib/calendar.js'
 
@@ -11,7 +11,7 @@ export function useConfirmed() {
   const c = p.state.confirmed ?? { date: p.top[0]?.date ?? '2026-12-20', time: '18:00' }
   const t = tallyDate(p.state.responses, c.date)
   const attend = t.ok.length + t.part.length
-  const event = { id: p.EVENT.id ?? 'demo', title: p.EVENT.title, date: c.date, time: c.time, details: '이어갈래?로 잡은 약속' }
+  const event = { id: p.EVENT.id ?? 'demo', title: p.EVENT.title, date: c.date, time: c.time, details: `이어갈래?로 잡은 약속 ${shareUrl('/c')}` }
   return { ...p, c, attend, event }
 }
 
@@ -19,6 +19,7 @@ export function useConfirmed() {
 export default function D1() {
   const go = useGo()
   const { state: nav } = useLocation()
+  const { toPlan } = usePlanNav()
   const { c, attend, N, EVENT, isHost, actions, event } = useConfirmed()
 
   // 확정 수정 후 돌아오면 공유 시트 자동 표시
@@ -51,7 +52,7 @@ export default function D1() {
             style={{ flex: 1, height: 44 }}
             onClick={() => {
               actions.cancelConfirm()
-              go('C2', { state: { cancelled: true } })
+              toPlan()
             }}
           >
             확정 취소
