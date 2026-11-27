@@ -30,7 +30,7 @@ export default function B5T() {
           <button key={k} type="button" role="tab" aria-selected={os === k} className={os === k ? 'is-on' : ''} onClick={() => setOs(k)}>{k}</button>
         ))}
       </div>
-      <div className="card note" style={{ borderColor: 'var(--c-ink)' }}>
+      <div className="card note">
         <p className="t-caption" style={{ color: 'var(--c-ink)' }}>카톡 안에서는 푸시가 안 돼. 아래 순서대로 해줘</p>
       </div>
       {STEPS[os].map(([n, t]) => (

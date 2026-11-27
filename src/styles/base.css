@@ -6,7 +6,7 @@ body {
   font-size: var(--fs-body);
   line-height: var(--lh);
   color: var(--c-text);
-  background: var(--c-surface);
+  background: linear-gradient(160deg, #fdeaf5 0%, #f1e9ff 55%, #e9e0ff 100%) fixed;
   -webkit-font-smoothing: antialiased;
 }
 button, input, select, textarea { font: inherit; color: inherit; }
@@ -35,8 +35,9 @@ a { color: inherit; }
   height: var(--phone-h);
   flex: none;
   background: var(--c-bg);
-  border: 2px solid var(--c-ink);
+  border: 6px solid var(--c-white);
   border-radius: var(--radius-phone);
+  box-shadow: 0 20px 50px rgba(123, 87, 224, 0.18), 0 0 0 1px var(--c-lav-2);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -49,8 +50,8 @@ a { color: inherit; }
   font-size: var(--fs-caption);
   font-weight: 700;
   padding: 2px 8px;
-  border-radius: 6px;
-  background: var(--c-ink);
+  border-radius: 999px;
+  background: var(--c-purple);
   color: var(--c-white);
   pointer-events: none;
 }
@@ -72,7 +73,7 @@ a { color: inherit; }
 }
 
 /* ---------- 글자 ---------- */
-.t-title { font-size: var(--fs-title); font-weight: 700; line-height: 1.35; margin: 0; }
+.t-title { font-size: var(--fs-title); font-weight: 800; letter-spacing: -0.02em; line-height: 1.35; margin: 0; }
 .t-body { font-size: var(--fs-body); margin: 0; }
 .t-caption { font-size: var(--fs-caption); color: var(--c-text-sub); margin: 0; }
 
@@ -88,29 +89,34 @@ a { color: inherit; }
   height: var(--btn-h);
   border-radius: var(--radius);
   font-size: 16px;
-  font-weight: 600;
-  border: 1.5px solid var(--c-ink);
-  background: var(--c-white);
-  color: var(--c-ink);
+  font-weight: 700;
+  border: 0;
+  background: var(--c-pink-2);
+  color: var(--c-magenta);
+  transition: background 0.15s, transform 0.1s;
 }
-.btn--primary { background: var(--c-ink); color: var(--c-white); }
+.btn:active:not(:disabled) { transform: scale(0.98); }
+.btn--primary { background: var(--c-primary); color: var(--c-white); box-shadow: var(--shadow-btn); }
+.btn--primary:active:not(:disabled) { background: var(--c-magenta-dk); }
 .btn--text {
   width: auto; height: auto; min-height: var(--touch);
-  border: 0; background: none; text-decoration: underline;
-  font-size: 14px; font-weight: 400; padding: 8px;
+  border: 0; background: none; text-decoration: underline; text-underline-offset: 3px;
+  color: var(--c-purple); box-shadow: none;
+  font-size: 14px; font-weight: 500; padding: 8px;
 }
-.btn:disabled { opacity: 0.4; cursor: default; }
+.btn:disabled { opacity: 0.4; cursor: default; box-shadow: none; }
 
 /* ---------- 칩 ---------- */
 .chip {
   min-height: var(--touch);
   padding: 0 16px;
   border-radius: 999px;
-  border: 1.5px solid var(--c-gray-3);
+  border: 1.5px solid var(--c-lav-2);
   background: var(--c-white);
+  color: var(--c-text);
   font-size: 14px;
 }
-.chip.is-on { background: var(--c-ink); border-color: var(--c-ink); color: var(--c-white); }
+.chip.is-on { background: var(--c-purple); border-color: var(--c-purple); color: var(--c-white); font-weight: 600; }
 
 /* ---------- 입력 ---------- */
 .field-label { display: block; font-size: 13px; color: var(--c-text-sub); margin: 0 0 6px; }
@@ -123,15 +129,17 @@ a { color: inherit; }
   background: var(--c-white);
   font-size: var(--fs-body);
 }
+.input:focus, .textarea:focus { outline: none; border-color: var(--c-purple); box-shadow: 0 0 0 3px var(--c-lav-1); }
 
 /* ---------- 카드, 일러스트 박스 ---------- */
-.card { border: 1.5px solid var(--c-line); border-radius: 14px; padding: 14px; }
+.card { border: 1.5px solid var(--c-line); border-radius: var(--radius-l); padding: 14px; background: var(--c-white); box-shadow: var(--shadow-card); }
 .illust {
   display: flex; align-items: center; justify-content: center; text-align: center;
-  background: var(--c-surface);
-  border: 1px dashed var(--c-gray-3);
+  background: linear-gradient(135deg, var(--c-pink-2), var(--c-lav-1));
+  border: 1.5px dashed var(--c-pink-3);
   border-radius: var(--radius);
-  color: var(--c-text-sub);
+  color: var(--c-pink);
+  font-weight: 600;
   font-size: var(--fs-caption);
   padding: 8px;
 }
@@ -139,7 +147,7 @@ a { color: inherit; }
 /* ---------- 진행 바 (A 단계) ---------- */
 .steps { display: flex; gap: 6px; }
 .steps i { flex: 1; height: 4px; border-radius: 2px; background: var(--c-line); }
-.steps i.is-done { background: var(--c-ink); }
+.steps i.is-done { background: var(--c-pink); }
 
 /* ---------- 바텀시트·모달 (폰 프레임 안에서만 덮는다) ---------- */
 .overlay {
@@ -154,16 +162,17 @@ a { color: inherit; }
   max-height: 85%;
   overflow-y: auto;
   background: var(--c-white);
-  border-radius: 20px 20px 0 0;
+  border-radius: 24px 24px 0 0;
   padding: 12px var(--gutter) 24px;
   display: flex; flex-direction: column; gap: var(--gap);
 }
-.sheet__grip { width: 40px; height: 4px; border-radius: 2px; background: var(--c-line); align-self: center; }
+.sheet__grip { width: 40px; height: 4px; border-radius: 2px; background: var(--c-lav-3); align-self: center; }
 .modal {
   width: 100%;
   background: var(--c-white);
-  border-radius: var(--radius-l);
+  border-radius: 24px;
   padding: 24px 20px 20px;
+  box-shadow: 0 16px 40px rgba(58, 35, 104, 0.25);
   display: flex; flex-direction: column; gap: 12px;
 }
 .modal__actions { display: flex; gap: 8px; margin-top: 8px; }
@@ -171,7 +180,7 @@ a { color: inherit; }
 
 /* ---------- 플레이스홀더 ---------- */
 .placeholder__meta { display: flex; flex-direction: column; gap: 4px; }
-.placeholder__note { border: 1px dashed var(--c-gray-3); border-radius: var(--radius); padding: 12px; }
+.placeholder__note { border: 1px dashed var(--c-lav-3); border-radius: var(--radius); padding: 12px; }
 .placeholder__note ul { margin: 6px 0 0; padding-left: 18px; font-size: var(--fs-caption); color: var(--c-text-sub); }
 
 /* ---------- 임시 화면 목록 (데모 패널이 들어오면 교체) ---------- */
@@ -183,4 +192,4 @@ a { color: inherit; }
   display: inline-flex; align-items: center; min-height: 32px; padding: 0 10px;
   border: 1px solid var(--c-line); border-radius: 8px; text-decoration: none; font-size: 13px;
 }
-.screen-nav a[aria-current='page'] { background: var(--c-ink); color: var(--c-white); border-color: var(--c-ink); }
+.screen-nav a[aria-current='page'] { background: var(--c-purple); color: var(--c-white); border-color: var(--c-purple); }

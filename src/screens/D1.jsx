@@ -29,10 +29,10 @@ export default function D1() {
 
   return (
     <Screen>
-      <div className="card confirm-card">
+      <div className="card confirm-card confirm-card--party">
         <Illust label="뱁새 축하 일러스트" h={170} />
         <div className="confirm-card__body">
-          <p className="t-title">{EVENT.title} 확정!</p>
+          <p className="t-title">{EVENT.title} <em>확정!</em></p>
           <p className="t-body">{formatDateKo(c.date)} {c.time}</p>
           <p className="t-caption">참석 {attend} / {N} · 우리 계속 이어가자</p>
         </div>

@@ -19,7 +19,7 @@ export default function A4() {
     <Screen>
       <Steps current={4} />
       <p className="t-title">초대장 완성! 단톡방에 뿌려줘</p>
-      <div className="card confirm-card" style={{ borderColor: 'var(--c-line)' }}>
+      <div className="card confirm-card">
         <Illust label="OG-1 초대 카드 미리보기 · 뱁새" h={150} />
         <div className="confirm-card__body">
           <p className="t-body" style={{ fontWeight: 600 }}>{d.title}</p>
@@ -30,7 +30,7 @@ export default function A4() {
         <Button variant="primary" style={{ flex: 1, height: 48 }} onClick={() => show('카톡으로 공유했어 (데모)')}>카톡으로 공유</Button>
         <Button style={{ flex: 1, height: 48 }} onClick={() => copyText(link).then(() => show('복사했어 콕'))}>링크 복사</Button>
       </div>
-      <div className="card" style={{ borderColor: 'var(--c-ink)' }}>
+      <div className="card" style={{ borderColor: 'var(--c-pink-3)' }}>
         <p className="t-body" style={{ fontWeight: 600 }}>관리 링크</p>
         <p className="t-caption" style={{ margin: '4px 0 10px' }}>이 링크로만 확정할 수 있어. 꼭 저장해둬</p>
         <div className="row" style={{ flexWrap: 'nowrap' }}>
